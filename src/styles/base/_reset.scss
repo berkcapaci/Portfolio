@@ -1,0 +1,14 @@
+@use '../abstracts/variables' as *;
+
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: $color-dark;
+  color: $color-white;
+  font-family: $font-secondary;
+}
