@@ -110,11 +110,11 @@
 
 .marquee {
   position: absolute;
-  bottom: 45px;
-  left: 0;
-  width: 100%;
+  bottom: 50px;
+  left: -5%;
+  width: 110%;
   height: 62px;
-  padding: 12px 32px;
+  padding: 12px 0;
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(5.3px);
   -webkit-backdrop-filter: blur(5.3px);
@@ -128,16 +128,23 @@
 
 .marquee-track {
   display: flex;
-  align-items: center;
-  white-space: nowrap;
-  gap: 56px;
-  animation: marquee-scroll 15s linear infinite;
+  width: max-content;
+  animation: marquee-scroll 45s linear infinite;
 }
 
-.marquee-track span:not(.dot) {
+.marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  padding-right: 56px;
+  flex-shrink: 0;
+}
+
+.marquee-text {
   color: $color-primary;
   font-family: $font-mono;
   font-size: 16px;
+  white-space: nowrap;
 }
 
 .dot {

@@ -51,24 +51,18 @@
     </div>
   </div>
 
-  <div class="marquee">
-    <div class="marquee-track">
-      <span>Available for remote work</span>
-      <span class="dot"></span>
-      <span>Full Stack Developer</span>
-      <span class="dot"></span>
-      <span>Based in Arnsberg</span>
-      <span class="dot"></span>
-      <span>Open to work</span>
-      <span class="dot"></span>
-      <span>Available for remote work</span>
-      <span class="dot"></span>
-      <span>Full Stack Developer</span>
-      <span class="dot"></span>
-      <span>Based in Arnsberg</span>
-      <span class="dot"></span>
-      <span>Open to work</span>
-      <span class="dot"></span>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" [style.--marquee-duration]="marqueeDuration() + 's'">
+      @for (group of [0, 1]; track group) {
+        <div class="marquee-group" #marqueeGroup>
+          @for (repeat of groupRepeats(); track repeat) {
+            @for (item of tickerItems; track $index) {
+              <span class="dot"></span>
+              <span class="marquee-text">{{ item }}</span>
+            }
+          }
+        </div>
+      }
     </div>
   </div>
 </section>
