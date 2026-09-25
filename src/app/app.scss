@@ -1,0 +1,15 @@
+@use '../styles/main' as *;
+
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(61, 207, 182, 0.5);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}

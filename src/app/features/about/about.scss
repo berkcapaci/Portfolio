@@ -7,9 +7,10 @@
 .about-inner {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 96px;
+  padding: 144px 96px;
   box-sizing: border-box;
   display: flex;
+  align-items: flex-start;
   gap: 96px;
 }
 
@@ -50,6 +51,7 @@
 .about-content {
   width: 568px;
   max-width: 100%;
+  margin-top: 98px;
   display: flex;
   flex-direction: column;
   gap: 20px;

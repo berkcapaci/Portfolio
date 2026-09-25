@@ -169,7 +169,7 @@
   position: absolute;
   left: 0;
   top: calc(50% + 86px);
-  bottom: 112px;
+  bottom: 0;
   width: 30px;
   display: flex;
   flex-direction: column;
@@ -217,7 +217,7 @@
   position: absolute;
   right: 0;
   top: calc(50% + 116px);
-  bottom: 112px;
+  bottom: 0;
   width: 32px;
   display: flex;
   flex-direction: column;
@@ -238,6 +238,7 @@
   line-height: 120%;
   color: $color-white;
   white-space: nowrap;
+  text-decoration: none;
   z-index: 2;
 
   &:hover {
