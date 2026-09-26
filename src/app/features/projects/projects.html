@@ -1,0 +1,49 @@
+<section class="projects" id="projects">
+  <div class="projects-inner">
+    <div class="projects-content">
+      <div class="projects-header">
+        <span class="projects-eyebrow">Portfolio</span>
+        <h2 class="projects-title">Featured Projects</h2>
+      </div>
+
+      <p class="projects-description">
+        Take a look at a few of my projects below — click on one to see it in more detail.
+      </p>
+
+      <div class="projects-list-wrapper">
+        <ul class="projects-list" #projectsList>
+          @for (project of projects; track project.name; let i = $index) {
+            <li
+              #projectRow
+              class="project-row"
+              [class.active]="hoveredIndex() === i"
+              (mouseenter)="onRowHover(i)"
+              (mouseleave)="hoveredIndex.set(null)"
+              (click)="openModal(i)"
+            >
+              <span class="project-name-group">
+                <span class="project-name">{{ project.name }}</span>
+                <img src="icons/arrow_outward.svg" alt="" class="project-arrow" />
+              </span>
+              <span class="project-tech">
+                @for (tech of project.technologies; track tech; let last = $last) {
+                  <span class="tech-name">{{ tech }}</span>
+                  @if (!last) {
+                    <span class="tech-separator">|</span>
+                  }
+                }
+              </span>
+            </li>
+          }
+        </ul>
+
+        @if (hoveredIndex() !== null) {
+          <div class="preview-image-wrapper" [style.top.px]="previewTop()">
+            <img src="images/projects/Capa_1.svg" alt="" class="preview-decoration" />
+            <img [src]="projects[hoveredIndex()!].image" alt="" class="preview-image" />
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

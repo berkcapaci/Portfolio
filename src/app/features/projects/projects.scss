@@ -1,0 +1,169 @@
+@use '../../../styles/main' as *;
+
+.projects {
+  position: relative;
+}
+
+.projects-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 144px 96px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 96px;
+  align-items: flex-start;
+}
+
+.projects-content {
+  width: 880px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 41px;
+}
+
+.projects-header {
+  width: 622px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.projects-eyebrow {
+  font-family: $font-secondary;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: normal;
+  color: $color-primary;
+  margin: 0;
+}
+
+.projects-title {
+  font-family: $font-mono;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 100%;
+  letter-spacing: -1.92px;
+  color: $color-primary;
+  margin: 0;
+}
+
+.projects-description {
+  width: 456px;
+  max-width: 100%;
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
+  text-align: justify;
+  color: $color-white;
+  margin: 0;
+}
+
+.projects-list-wrapper {
+  position: relative;
+}
+
+.projects-list {
+  width: 880px;
+  max-width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 32px;
+  border-bottom: 1px solid $color-primary;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background 150ms ease-in;
+
+  &:first-child {
+    border-top: 1px solid $color-primary;
+  }
+
+  &.active {
+    background: rgba(61, 207, 182, 0.3);
+  }
+}
+
+.project-name-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.project-name {
+  font-family: $font-mono;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  color: $color-white;
+}
+
+.project-arrow {
+  width: 12.56px;
+  height: 12.58px;
+  filter: brightness(0) invert(1);
+  opacity: 0;
+  transition: opacity 150ms ease-in;
+}
+
+.project-row.active .project-arrow {
+  opacity: 1;
+}
+
+.project-tech {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tech-name {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
+  color: $color-white;
+}
+
+.tech-separator {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
+  color: $color-primary;
+}
+
+.preview-image-wrapper {
+  position: absolute;
+  right: -368px;
+  width: 296px;
+  height: 192px;
+}
+
+.preview-decoration {
+  position: absolute;
+  top: 20px;
+  left: 23px;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.preview-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border-radius: 8px;
+  object-fit: cover;
+}
