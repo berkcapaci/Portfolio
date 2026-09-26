@@ -58,56 +58,6 @@
   gap: 48px;
 }
 
-.btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 48px;
-  gap: 10px;
-  border: 1px solid $color-white;
-  border-radius: 100px;
-  padding: 0 24px;
-  font-family: $font-secondary;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 120%;
-  color: $color-white;
-  text-decoration: none;
-  box-sizing: border-box;
-  overflow: hidden;
-  width: max-content;
-  transition:
-    border-color 200ms ease-out,
-    color 200ms ease-out;
-
-  &:hover {
-    border-color: $color-primary;
-    color: $color-primary;
-  }
-}
-
-.btn-text {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.btn:hover .btn-text {
-  animation: btn-marquee 2.1s linear infinite;
-}
-
-@keyframes btn-marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  55% {
-    transform: translateX(-125%);
-  }
-  100% {
-    transform: translateX(-150%);
-  }
-}
-
 .marquee {
   position: absolute;
   bottom: 50px;

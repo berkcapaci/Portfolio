@@ -1,1 +1,44 @@
-<p>skills works!</p>
+<section class="skills" id="skills">
+  <div class="skills-inner">
+    <div class="skills-text">
+      <span class="skills-eyebrow">Technologies</span>
+      <div class="skills-card">
+        <h2 class="skills-title">Skill Set</h2>
+
+        <div class="skills-description">
+          <p class="skills-text-block">
+            I focus on building clean, accessible interfaces with HTML, CSS and JavaScript, and I'm
+            growing my skills across the full stack with Angular, TypeScript and backend
+            fundamentals. I make a point of staying current with new tools and best practices,
+            because web development moves fast and I don't want to fall behind.
+          </p>
+
+          <div class="skills-cta">
+            <h3 class="skills-cta-title">
+              <span class="text-white">You need </span>
+              <span class="text-primary">another skill?</span>
+            </h3>
+            <p class="skills-cta-text">
+              Feel free to contact me. I look forward to expanding on my previous knowledge.
+            </p>
+          </div>
+        </div>
+
+        <a href="#" class="btn" (click)="onLetsTalkClick($event)">
+          <span class="btn-text">Let's Talk</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+      @for (skill of skillList; track skill.name) {
+        <div class="skill-item">
+          <div class="skill-icon-wrapper">
+            <img [src]="skill.icon" [alt]="skill.name" />
+          </div>
+          <span class="skill-name">{{ skill.name }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
