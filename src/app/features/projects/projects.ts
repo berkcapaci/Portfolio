@@ -1,5 +1,6 @@
 import { Component, signal, ElementRef, QueryList, ViewChildren, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { SKILLS } from '../../core/data/skills-data';
 
 @Component({
   imports: [],
@@ -14,7 +15,7 @@ export class Projects {
       name: 'Join',
       description:
         'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.',
-      technologies: ['Angular', 'TypeScript', 'CSS', 'HTML', 'Firebase'],
+      technologies: ['Angular', 'TypeScript', 'CSS', 'HTML', 'Supabase'],
       githubUrl: 'https://github.com/berkcapaci/ElPolloLoco',
       liveUrl: 'https://berkcapaci.developerakademie.net/ElPolloLoco/index.html',
       image: 'images/projects/join.svg',
@@ -34,7 +35,7 @@ export class Projects {
       name: 'DA Bubble',
       description:
         'This App is a Slack Clone App. It revolutionizes team communication and collaboration with its intuitive interface, real-time messaging, and robust channel organization.',
-      technologies: ['Angular', 'TypeScript', 'Firebase'],
+      technologies: ['Angular', 'TypeScript', 'Supabase'],
       githubUrl: 'https://github.com/berkcapaci/ElPolloLoco',
       liveUrl: 'https://berkcapaci.developerakademie.net/ElPolloLoco/index.html',
       image: 'images/projects/Bubble.svg',
@@ -43,6 +44,7 @@ export class Projects {
 
   protected readonly hoveredIndex = signal<number | null>(null);
   protected readonly previewTop = signal(0);
+  protected readonly selectedIndex = signal<number | null>(null);
 
   @ViewChildren('projectRow') private projectRows!: QueryList<ElementRef<HTMLElement>>;
   @ViewChild('projectsList') private projectsList!: ElementRef<HTMLElement>;
@@ -76,7 +78,24 @@ export class Projects {
     this.previewTop.set(finalTop);
   }
 
+  protected techIcon(tech: string): string {
+    const skill = SKILLS.find((s) => s.name === tech);
+    return skill?.iconTeal ?? skill?.icon ?? '';
+  }
+
   protected openModal(index: number): void {
-    // sıradaki adımda
+    this.selectedIndex.set(index);
+  }
+
+  protected closeModal(): void {
+    this.selectedIndex.set(null);
+  }
+
+  protected nextProject(): void {
+    const current = this.selectedIndex();
+    if (current === null) {
+      return;
+    }
+    this.selectedIndex.set((current + 1) % this.projects.length);
   }
 }

@@ -107,16 +107,25 @@
   color: $color-white;
 }
 
-.project-arrow {
-  width: 12.56px;
-  height: 12.58px;
-  filter: brightness(0) invert(1);
+.project-arrow-box {
+  width: 23px;
+  height: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   opacity: 0;
   transition: opacity 150ms ease-in;
 }
 
-.project-row.active .project-arrow {
+.project-row.active .project-arrow-box {
   opacity: 1;
+}
+
+.project-arrow {
+  width: 12.56px;
+  height: 12.58px;
+  filter: brightness(0) invert(1);
 }
 
 .project-tech {
@@ -166,4 +175,286 @@
   z-index: 1;
   border-radius: 8px;
   object-fit: cover;
+}
+
+// ============ MODAL ============
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  position: relative;
+  width: 1248px;
+  height: 656px;
+  max-width: 90vw;
+  max-height: 90vh;
+  box-sizing: border-box;
+  border-radius: 30px;
+  border: 1px solid $color-primary;
+  background: linear-gradient(55.22deg, $color-dark 36.26%, $color-dark-teal 93.28%);
+  padding: 91px 80px;
+  display: flex;
+  gap: 40px;
+}
+
+// --- Sol taraf ---
+
+.modal-info {
+  width: 480px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.modal-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.modal-number {
+  font-family: $font-secondary;
+  font-weight: 700;
+  font-size: 128px;
+  line-height: 100px;
+  letter-spacing: -2.56px;
+  color: $color-primary;
+}
+
+.modal-title {
+  font-family: $font-mono;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 80%;
+  letter-spacing: -1.92px;
+  color: $color-white;
+  margin: 0;
+}
+
+.modal-description-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-question {
+  font-family: $font-mono;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  color: $color-primary;
+}
+
+.modal-description {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
+  color: $color-white;
+  margin: 0;
+}
+
+.modal-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.modal-tech-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.modal-tech-icon-box {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+}
+
+.modal-tech-name {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  color: $color-white;
+}
+
+// --- Secondary Button (GitHub / Live Test) ---
+
+.modal-buttons {
+  display: flex;
+  gap: 32px;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 100px;
+  border: 1px solid $color-white;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: border-color 100ms ease-out;
+}
+
+.btn-secondary:hover {
+  border-color: $color-primary;
+}
+
+.btn-secondary-text {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
+  color: $color-white;
+  transition: color 100ms ease-out;
+}
+
+.btn-secondary:hover .btn-secondary-text {
+  color: $color-primary;
+}
+
+.btn-secondary-arrow-box {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.btn-secondary-arrow {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 10.28px;
+  height: 10.29px;
+  transition: top 100ms ease-out, left 100ms ease-out;
+}
+
+.btn-secondary:hover .btn-secondary-arrow {
+  top: 3px;
+  left: 5px;
+}
+
+// --- Sağ taraf ---
+
+.modal-close {
+  position: absolute;
+  top: 56px;
+  right: 80px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.modal-close-icon {
+  display: inline-block;
+  width: 17.85px;
+  height: 17.85px;
+  background: $color-white;
+  mask-image: url('/icons/close_small.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: url('/icons/close_small.svg');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  transition: width 100ms ease-in, height 100ms ease-in, background 100ms ease-in;
+}
+
+.modal-close:hover .modal-close-icon {
+  width: 25.38px;
+  height: 25.38px;
+  background: $color-primary;
+}
+
+.modal-image {
+  position: absolute;
+  top: 143px;
+  right: 80px;
+  width: 520px;
+  height: 369.78px;
+  border-radius: 30px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.modal-next {
+  position: absolute;
+  bottom: 55px;
+  right: 78px;
+  width: 148px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.modal-next-text {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
+  color: $color-primary;
+  transition: color 100ms ease-in;
+}
+
+.modal-next:hover .modal-next-text {
+  color: $color-white;
+}
+
+.modal-next-arrow-box {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.modal-next-arrow {
+  position: absolute;
+  top: 10.92px;
+  left: 6.67px;
+  width: 18.23px;
+  height: 18.14px;
+  transition: top 100ms ease-in;
+}
+
+.modal-next:hover .modal-next-arrow {
+  transform: translate(3.33px, -0.52px);
 }

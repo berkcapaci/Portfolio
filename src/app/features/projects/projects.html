@@ -23,7 +23,9 @@
             >
               <span class="project-name-group">
                 <span class="project-name">{{ project.name }}</span>
-                <img src="icons/arrow_outward.svg" alt="" class="project-arrow" />
+                <span class="project-arrow-box">
+                  <img src="icons/arrow_outward.svg" alt="" class="project-arrow" />
+                </span>
               </span>
               <span class="project-tech">
                 @for (tech of project.technologies; track tech; let last = $last) {
@@ -46,4 +48,73 @@
       </div>
     </div>
   </div>
+
+  @if (selectedIndex() !== null) {
+    <div class="modal-overlay" (click)="closeModal()">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <button class="modal-close" (click)="closeModal()" aria-label="Close">
+          <span class="modal-close-icon"></span>
+        </button>
+
+        <div class="modal-info">
+          <div class="modal-heading">
+            <span class="modal-number">{{ projects[selectedIndex()!].number }}</span>
+            <h3 class="modal-title">{{ projects[selectedIndex()!].name }}</h3>
+          </div>
+
+          <div class="modal-description-block">
+            <span class="modal-question">What is this project about?</span>
+            <p class="modal-description">{{ projects[selectedIndex()!].description }}</p>
+
+            <div class="modal-tech-list">
+              @for (tech of projects[selectedIndex()!].technologies; track tech) {
+                <div class="modal-tech-item">
+                  <span class="modal-tech-icon-box">
+                    <img [src]="techIcon(tech)" alt="" />
+                  </span>
+                  <span class="modal-tech-name">{{ tech }}</span>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="modal-buttons">
+            <a
+              [href]="projects[selectedIndex()!].githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary"
+            >
+              <span class="btn-secondary-text">GitHub</span>
+              <span class="btn-secondary-arrow-box">
+                <img src="icons/arrow_outward.svg" alt="" class="btn-secondary-arrow" />
+              </span>
+            </a>
+            <a
+              [href]="projects[selectedIndex()!].liveUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary"
+            >
+              <span class="btn-secondary-text">Live Test</span>
+              <span class="btn-secondary-arrow-box">
+                <img src="icons/arrow_outward.svg" alt="" class="btn-secondary-arrow" />
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="modal-image">
+          <img [src]="projects[selectedIndex()!].image" [alt]="projects[selectedIndex()!].name" />
+        </div>
+
+        <button class="modal-next" (click)="nextProject()">
+          <span class="modal-next-text">Next project</span>
+          <span class="modal-next-arrow-box">
+            <img src="icons/arrow_forward.svg" alt="" class="modal-next-arrow" />
+          </span>
+        </button>
+      </div>
+    </div>
+  }
 </section>
