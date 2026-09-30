@@ -34,9 +34,37 @@
       @for (skill of skillList; track skill.name) {
         <div class="skill-item">
           <div class="skill-icon-wrapper">
-            <img [src]="skill.icon" [alt]="skill.name" />
+            @if (skill.name === 'Growth mindset') {
+              <img [src]="skill.icon" [alt]="skill.name" class="icon-default" />
+              <img [src]="skill.iconTeal" alt="" class="icon-hover" />
+            } @else {
+              <img [src]="skill.icon" [alt]="skill.name" />
+            }
           </div>
-          <span class="skill-name">{{ skill.name }}</span>
+          <span class="skill-name" [class.growth-mindset-name]="skill.name === 'Growth mindset'">{{ skill.name }}</span>
+
+          @if (skill.name === 'Growth mindset') {
+            <div class="skill-tooltip">
+              <div class="skill-tooltip-box">
+                <p class="skill-tooltip-text">I have a special interest in learning</p>
+                <div class="skill-tooltip-items">
+                  <div class="skill-tooltip-item">
+                    <span class="skill-tooltip-icon-box">
+                      <img src="icons/brand/React_brand.svg" alt="" />
+                    </span>
+                    <span class="skill-tooltip-name">React</span>
+                  </div>
+                  <div class="skill-tooltip-item">
+                    <span class="skill-tooltip-icon-box">
+                      <img src="icons/brand/Vue_js_brand.svg" alt="" />
+                    </span>
+                    <span class="skill-tooltip-name">Vue.js</span>
+                  </div>
+                </div>
+              </div>
+              <div class="skill-tooltip-arrow"></div>
+            </div>
+          }
         </div>
       }
     </div>

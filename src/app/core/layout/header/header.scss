@@ -37,6 +37,9 @@ nav {
 }
 
 nav a {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 12px; // Room for the dot below the text
   font-family: $font-mono;
   font-weight: 400;
   font-size: 20px;
@@ -44,6 +47,33 @@ nav a {
   letter-spacing: -0.03em;
   color: $color-white;
   text-decoration: none;
+  transition: color 200ms ease-out;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(0.5);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $color-primary;
+    opacity: 0;
+    transition:
+      opacity 200ms ease-out,
+      transform 200ms ease-out;
+  }
+
+  &:hover::after,
+  &.active::after {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+
+  &.active {
+    color: $color-primary;
+  }
 }
 
 .logo {

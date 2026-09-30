@@ -42,7 +42,16 @@
         @if (hoveredIndex() !== null) {
           <div class="preview-image-wrapper" [style.top.px]="previewTop()">
             <img src="images/projects/Capa_1.svg" alt="" class="preview-decoration" />
-            <img [src]="projects[hoveredIndex()!].image" alt="" class="preview-image" />
+            <div
+              class="preview-image-bg"
+              [style.background]="projects[hoveredIndex()!].bgColor ?? 'transparent'"
+            ></div>
+            <img
+              [src]="projects[hoveredIndex()!].image"
+              alt=""
+              class="preview-image"
+              [style.object-fit]="projects[hoveredIndex()!].bgColor ? 'contain' : 'cover'"
+            />
           </div>
         }
       </div>
@@ -104,8 +113,15 @@
           </div>
         </div>
 
-        <div class="modal-image">
-          <img [src]="projects[selectedIndex()!].image" [alt]="projects[selectedIndex()!].name" />
+        <div
+          class="modal-image"
+          [style.background]="projects[selectedIndex()!].bgColor ?? 'transparent'"
+        >
+          <img
+            [src]="projects[selectedIndex()!].image"
+            [alt]="projects[selectedIndex()!].name"
+            [style.object-fit]="projects[selectedIndex()!].bgColor ? 'contain' : 'cover'"
+          />
         </div>
 
         <button class="modal-next" (click)="nextProject()">

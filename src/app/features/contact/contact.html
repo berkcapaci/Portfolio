@@ -1,0 +1,111 @@
+<section id="contact" class="contact">
+  <div class="contact-inner">
+    <div class="contact-text">
+      <div class="contact-heading">
+        <p class="eyebrow">Contact me</p>
+        <h2 class="title">Let's work together</h2>
+      </div>
+
+      <div class="about-box">
+        <h3 class="about-title">Got a problem to solve?</h3>
+        <p class="about-desc">
+          Have an idea or a role in mind? I'd love to hear about it and see how I can help bring it
+          to life.
+        </p>
+        <p class="about-cta">
+          Need a Fullstack developer? <span class="highlight">Let's talk!</span>
+        </p>
+      </div>
+    </div>
+
+    <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-fields">
+        <div class="form-field">
+          <label for="name">What's your name?</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            [placeholder]="errorMessage('name') || 'Your name goes here'"
+            [class.form-input--error]="!!errorMessage('name')"
+          />
+          @if (hasInlineError('name')) {
+            <span class="field-error">{{ errorMessage('name') }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="email">What's your email?</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            [placeholder]="errorMessage('email') || 'youremail@email.com'"
+            [class.form-input--error]="!!errorMessage('email')"
+          />
+          @if (hasInlineError('email')) {
+            <span class="field-error">{{ errorMessage('email') }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="message">How can I help you?</label>
+          <textarea
+            id="message"
+            formControlName="message"
+            [placeholder]="errorMessage('message') || 'Hello Berk, I am interested in...'"
+            [class.form-input--error]="!!errorMessage('message')"
+          ></textarea>
+          @if (hasInlineError('message')) {
+            <span class="field-error">{{ errorMessage('message') }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <div class="privacy-row">
+          <label
+            class="checkbox"
+            (mouseenter)="onCheckboxHover(true)"
+            (mouseleave)="onCheckboxHover(false)"
+          >
+            <input type="checkbox" formControlName="privacy" class="checkbox-input" />
+            <img [src]="checkboxIcon" alt="" class="checkbox-icon" />
+          </label>
+
+          <p class="privacy-text">
+            I've read the
+            <a routerLink="/privacy-policy" class="privacy-link">privacy policy</a>
+            and agree to the processing of my data as outlined.
+          </p>
+        </div>
+
+        @if (privacyError) {
+          <span class="privacy-error">Please accept the privacy policy.</span>
+        }
+
+        <button type="submit" class="btn" [disabled]="status() === 'sending'">
+          <span class="btn-text">
+            @switch (status()) {
+              @case ('sending') {
+                Sending...
+              }
+              @default {
+                Say Hello ;)
+              }
+            }
+          </span>
+        </button>
+
+        @if (status() === 'success') {
+          <p class="form-status form-status--success">Thank you! Your message has been sent.</p>
+        }
+        @if (status() === 'error') {
+          <p class="form-status form-status--error">
+            Something went wrong. Please try again later.
+          </p>
+        }
+      </div>
+    </form>
+  </div>
+</section>

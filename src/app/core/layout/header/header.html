@@ -6,9 +6,29 @@
         <span>DE</span>
       </div>
       <nav>
-        <a routerLink="/" fragment="about" (click)="onNavClick($event, 'about')">About me</a>
-        <a routerLink="/" fragment="skills" (click)="onNavClick($event, 'skills')">Skills</a>
-        <a routerLink="/" fragment="projects" (click)="onNavClick($event, 'projects')">Projects</a>
+        <nav>
+          <a
+            routerLink="/"
+            fragment="about"
+            (click)="onNavClick($event, 'about')"
+            [class.active]="activeSection() === 'about'"
+            >About me</a
+          >
+          <a
+            routerLink="/"
+            fragment="skills"
+            (click)="onNavClick($event, 'skills')"
+            [class.active]="activeSection() === 'skills'"
+            >Skills</a
+          >
+          <a
+            routerLink="/"
+            fragment="projects"
+            (click)="onNavClick($event, 'projects')"
+            [class.active]="activeSection() === 'projects'"
+            >Projects</a
+          >
+        </nav>
       </nav>
     </div>
     <div class="logo">

@@ -18,7 +18,7 @@ export class Projects {
       technologies: ['Angular', 'TypeScript', 'CSS', 'HTML', 'Supabase'],
       githubUrl: 'https://github.com/berkcapaci/ElPolloLoco',
       liveUrl: 'https://berkcapaci.developerakademie.net/ElPolloLoco/index.html',
-      image: 'images/projects/join.svg',
+      image: 'images/projects/join_optimized.jpg',
     },
     {
       number: '02',
@@ -28,17 +28,18 @@ export class Projects {
       technologies: ['JavaScript', 'HTML', 'CSS'],
       githubUrl: 'https://github.com/berkcapaci/ElPolloLoco',
       liveUrl: 'https://berkcapaci.developerakademie.net/ElPolloLoco/index.html',
-      image: 'images/projects/ElPolloLoco.svg',
+      image: 'images/projects/ElPolloLoco_optimized.jpg',
     },
     {
       number: '03',
-      name: 'DA Bubble',
+      name: 'Pokedex',
       description:
-        'This App is a Slack Clone App. It revolutionizes team communication and collaboration with its intuitive interface, real-time messaging, and robust channel organization.',
-      technologies: ['Angular', 'TypeScript', 'Supabase'],
-      githubUrl: 'https://github.com/berkcapaci/ElPolloLoco',
-      liveUrl: 'https://berkcapaci.developerakademie.net/ElPolloLoco/index.html',
-      image: 'images/projects/Bubble.svg',
+        'Responsive Pokédex that fetches live data from the PokéAPI. Browse Pokémon cards, search by name, and explore detailed stats, types and evolution chains in an interactive dialog.',
+      technologies: ['JavaScript', 'HTML', 'CSS'],
+      githubUrl: 'https://github.com/berkcapaci/Pokedex',
+      liveUrl: 'https://berkcapaci.developerakademie.net/Pokedex/index.html',
+      image: 'images/projects/pokedex.png',
+      bgColor: '#f7d02c',
     },
   ];
 

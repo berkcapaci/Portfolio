@@ -1,1 +1,52 @@
-<p>footer works!</p>
+<footer class="footer" id="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <a
+        class="footer-logo"
+        (click)="scrollToTop($event)"
+        (mouseenter)="onLogoHover(true)"
+        (mouseleave)="onLogoHover(false)"
+        href="#top"
+      >
+        <img [src]="logoIcon" alt="Berk Çapacı" class="footer-logo-icon" />
+        <span class="footer-logo-text">Berk Çapacı</span>
+      </a>
+
+      <div class="footer-info">
+        <span class="footer-info-text">Fullstack Developer</span>
+        <span class="footer-info-text">Arnsberg Germany</span>
+      </div>
+    </div>
+
+    <nav class="footer-links">
+      <a
+        href="https://github.com/berkcapaci"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link"
+      >
+        <img src="icons/radio_button_unchecked.svg" alt="" class="footer-link-dot" />
+        <span class="footer-link-text">GitHub</span>
+      </a>
+      <a
+        href="https://linkedin.com/in/berkcapaci"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link"
+      >
+        <img src="icons/radio_button_unchecked.svg" alt="" class="footer-link-dot" />
+        <span class="footer-link-text">LinkedIn</span>
+      </a>
+      <a href="mailto:berkcapaci.de@gmail.com" class="footer-link">
+        <img src="icons/radio_button_unchecked.svg" alt="" class="footer-link-dot" />
+        <span class="footer-link-text">Email</span>
+      </a>
+      <a routerLink="/impress" class="footer-link">
+        <img src="icons/radio_button_unchecked.svg" alt="" class="footer-link-dot" />
+        <span class="footer-link-text">Legal Notice</span>
+      </a>
+    </nav>
+  </div>
+
+  <p class="footer-copyright">© Berk Çapacı 2026</p>
+</footer>

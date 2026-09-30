@@ -1,0 +1,275 @@
+@use '../../../styles/main' as *;
+
+.contact {
+  position: relative;
+}
+
+.contact-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 144px 96px 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  gap: 64px;
+}
+
+// ---------- Left column: text block ----------
+
+.contact-text {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 568px;
+}
+
+.contact-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.eyebrow {
+  font-family: $font-secondary; // Karla
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  color: $color-primary;
+  margin: 0;
+}
+
+.title {
+  font-family: $font-mono; // Fira Code
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: $color-primary;
+  margin: 0;
+}
+
+.about-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+}
+
+.about-title {
+  font-family: $font-mono;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  color: $color-primary;
+  margin: 0;
+}
+
+.about-desc {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  color: $color-white;
+  margin: 0;
+}
+
+.about-cta {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  color: $color-white;
+  margin: 0;
+
+  .highlight {
+    font-weight: 700;
+    color: $color-primary;
+  }
+}
+
+// ---------- Right column: form ----------
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 616px;
+  border-top: 1px solid $color-primary;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 0; // My call: real inputs stretch full width, so left/right
+  // padding from Figma's fixed-width label boxes doesn't apply
+  border-top: 1px solid $color-primary-50;
+  border-bottom: 1px solid $color-primary-50;
+  transition: border-color 200ms ease-out;
+
+  // Hover and focus share the same border treatment as the Figma "Hover" state
+  &:hover,
+  &:focus-within {
+    border-color: $color-primary;
+  }
+
+  // Error state uses the same border color as hover (per Figma)
+  &:has(.form-input--error) {
+    border-color: $color-primary;
+  }
+
+  label {
+    font-family: $font-mono;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 120%;
+    color: $color-primary;
+  }
+
+  input,
+  textarea {
+    border: none;
+    background: transparent;
+    outline: none;
+    resize: none;
+    font-family: $font-secondary;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 120%;
+    color: $color-white; // My guess: typed text color, not specified in Figma
+
+    &::placeholder {
+      color: rgba($color-white, 0.8);
+    }
+
+    &.form-input--error::placeholder {
+      color: rgba(#ec7b7b, 0.8);
+    }
+  }
+
+  textarea {
+    min-height: 22px;
+  }
+}
+
+.field-error {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 120%;
+  color: rgba(#ec7b7b, 0.8);
+  margin: 0;
+}
+
+.form-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  .btn {
+    margin-bottom: -9px; // Matches the 9px overflow seen in the Figma frame
+  }
+}
+
+.privacy-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.checkbox {
+  position: relative;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  .checkbox-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .checkbox-icon {
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+  }
+}
+
+.privacy-text {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 120%;
+  color: $color-white;
+  margin: 0;
+}
+
+.privacy-link {
+  font-family: $font-mono;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 120%;
+  letter-spacing: -0.03em;
+  color: $color-primary;
+  text-decoration: none;
+  padding: 5px 4px;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 200ms ease-out,
+    border-color 200ms ease-out;
+
+  &:hover {
+    color: $color-white;
+    border-bottom-color: $color-primary;
+  }
+}
+
+// My guess: same red as the input error text, since no hex was given for this one
+.privacy-error {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 120%;
+  color: rgba(#ec7b7b, 0.8);
+  margin: 0;
+  align-self: flex-start;
+}
+
+.btn {
+  &:disabled {
+    opacity: 0.5; // My guess, no disabled state was defined in Figma
+    cursor: not-allowed;
+
+    &:hover {
+      border-color: $color-white;
+      color: $color-white;
+    }
+  }
+}
+
+.form-status {
+  font-family: $font-secondary;
+  font-size: 16px;
+  margin: 0;
+
+  &--success {
+    color: $color-primary;
+  }
+
+  &--error {
+    color: rgba(#ec7b7b, 0.8);
+  }
+}
