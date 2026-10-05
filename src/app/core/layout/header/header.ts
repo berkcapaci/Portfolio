@@ -1,16 +1,23 @@
-import { Component, HostListener, OnInit, OnDestroy, signal } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, HostListener, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Scroll } from '../../services/scroll';
+import { Lang, Language } from '../../services/language';
 
 @Component({
-  imports: [RouterLink],
+  imports: [RouterLink, TranslatePipe],
   selector: 'app-header',
   styleUrl: './header.scss',
   templateUrl: './header.html',
 })
 export class Header implements OnInit, OnDestroy {
+  private readonly language = inject(Language);
+
+  // The same signal the service owns, so the toggle always mirrors the real language
+  protected readonly currentLang = this.language.current;
   protected readonly isMenuOpen = signal(false);
-  protected readonly activeSection = signal<string | null>(null);
+  protected readonly showLangToggle = signal(true);
 
   private readonly sectionIds = ['about', 'skills', 'projects'];
   private observer?: IntersectionObserver;
@@ -18,17 +25,34 @@ export class Header implements OnInit, OnDestroy {
   constructor(
     private scrollService: Scroll,
     private router: Router,
-  ) {}
+  ) {
+    // Re-evaluates on every completed navigation, not just on first render,
+    // so it stays correct even when Angular doesn't otherwise re-check it
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+      const path = this.router.url.split('#')[0];
+      this.showLangToggle.set(path !== '/impress' && path !== '/privacy-policy');
+    });
+  }
+
+  protected get activeSection(): string | null {
+    return this.scrollService.activeSection();
+  }
+
+  protected useLanguage(lang: Lang): void {
+    this.language.use(lang);
+  }
 
   ngOnInit(): void {
-    // rootMargin shrinks the observed area to a thin horizontal line at
-    // screen center, so a section only counts as "active" once it crosses
-    // the middle of the viewport (not just when it first appears at the edge)
+    // Set the initial value immediately, since the first NavigationEnd
+    // may already have fired before this component was constructed
+    const path = this.router.url.split('#')[0];
+    this.showLangToggle.set(path !== '/impress' && path !== '/privacy-policy');
+
     this.observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            this.activeSection.set(entry.target.id);
+            this.scrollService.activeSection.set(entry.target.id);
           }
         }
       },
@@ -53,7 +77,6 @@ export class Header implements OnInit, OnDestroy {
 
   protected onNavClick(event: Event, sectionId: string): void {
     event.preventDefault();
-    this.activeSection.set(sectionId);
 
     const path = this.router.url.split('#')[0];
     if (path === '/') {

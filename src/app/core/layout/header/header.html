@@ -1,34 +1,34 @@
 <header>
   <div class="header-inner">
     <div class="nav-group">
-      <div class="lang-toggle">
-        <span class="active">EN</span>
-        <span>DE</span>
-      </div>
+      @if (showLangToggle()) {
+        <div class="lang-toggle">
+          <span [class.active]="currentLang() === 'en'" (click)="useLanguage('en')">EN</span>
+          <span [class.active]="currentLang() === 'de'" (click)="useLanguage('de')">DE</span>
+        </div>
+      }
       <nav>
-        <nav>
-          <a
-            routerLink="/"
-            fragment="about"
-            (click)="onNavClick($event, 'about')"
-            [class.active]="activeSection() === 'about'"
-            >About me</a
-          >
-          <a
-            routerLink="/"
-            fragment="skills"
-            (click)="onNavClick($event, 'skills')"
-            [class.active]="activeSection() === 'skills'"
-            >Skills</a
-          >
-          <a
-            routerLink="/"
-            fragment="projects"
-            (click)="onNavClick($event, 'projects')"
-            [class.active]="activeSection() === 'projects'"
-            >Projects</a
-          >
-        </nav>
+        <a
+          routerLink="/"
+          fragment="about"
+          (click)="onNavClick($event, 'about')"
+          [class.active]="activeSection === 'about'"
+          >{{ 'nav.about' | translate }}</a
+        >
+        <a
+          routerLink="/"
+          fragment="skills"
+          (click)="onNavClick($event, 'skills')"
+          [class.active]="activeSection === 'skills'"
+          >{{ 'nav.skills' | translate }}</a
+        >
+        <a
+          routerLink="/"
+          fragment="projects"
+          (click)="onNavClick($event, 'projects')"
+          [class.active]="activeSection === 'projects'"
+          >{{ 'nav.projects' | translate }}</a
+        >
       </nav>
     </div>
     <div class="logo">
@@ -36,16 +36,27 @@
         <img src="icons/logo.svg" alt="Berk Capaci logo" class="logo-default" />
         <img src="icons/logo_hover.svg" alt="" class="logo-outline" />
       </div>
-      <span>Berk<br />Çapacı</span>
+      <span>Berk Çapacı</span>
     </div>
     <button (click)="toggleMenu()"><img src="icons/menu.svg" alt="hamburger menu icon" /></button>
 
     @if (isMenuOpen()) {
       <div class="mobile-menu">
-        <a routerLink="/" fragment="about" (click)="onNavClick($event, 'about')">About me</a>
-        <a routerLink="/" fragment="skills" (click)="onNavClick($event, 'skills')">Skills</a>
-        <a routerLink="/" fragment="projects" (click)="onNavClick($event, 'projects')">Projects</a>
-        <span>EN / DE</span>
+        <a routerLink="/" fragment="about" (click)="onNavClick($event, 'about')">{{
+          'nav.about' | translate
+        }}</a>
+        <a routerLink="/" fragment="skills" (click)="onNavClick($event, 'skills')">{{
+          'nav.skills' | translate
+        }}</a>
+        <a routerLink="/" fragment="projects" (click)="onNavClick($event, 'projects')">{{
+          'nav.projects' | translate
+        }}</a>
+        @if (showLangToggle()) {
+          <div class="lang-toggle">
+            <span [class.active]="currentLang() === 'en'" (click)="useLanguage('en')">EN</span>
+            <span [class.active]="currentLang() === 'de'" (click)="useLanguage('de')">DE</span>
+          </div>
+        }
       </div>
     }
   </div>

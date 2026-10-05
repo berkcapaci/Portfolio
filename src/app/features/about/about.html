@@ -6,38 +6,23 @@
     </div>
 
     <div class="about-content">
-      <span class="about-eyebrow">Who I Am</span>
+      <span class="about-eyebrow">{{ 'about.eyebrow' | translate }}</span>
       <div class="about-card">
-        <h2 class="about-title">About me</h2>
-        <p class="about-text">
-          I'm Berk, a Full Stack Developer with a background in Mechanical Engineering. Before
-          moving into software, I worked in quality and project engineering — roles that trained me
-          to look closely at details, follow processes rigorously, and never ship something I
-          haven't fully understood. That mindset carried directly into coding: I care about why
-          something works, not just that it works.
-        </p>
+        <h2 class="about-title">{{ 'about.title' | translate }}</h2>
+        <p class="about-text">{{ 'about.text' | translate }}</p>
 
         <ul class="about-points">
           <li>
             <img src="icons/pin.svg" alt="" />
-            <span
-              >Based in Arnsberg, Germany — open to remote work and relocation for the right
-              opportunity.</span
-            >
+            <span>{{ 'about.points.location' | translate }}</span>
           </li>
           <li>
             <img src="icons/cognition.svg" alt="" />
-            <span
-              >Coming from engineering, I'm used to learning new tools and standards quickly, and I
-              stay curious about new technologies in web development.</span
-            >
+            <span>{{ 'about.points.learning' | translate }}</span>
           </li>
           <li>
             <img src="icons/new_releases.svg" alt="" />
-            <span
-              >My real passion has always been problem solving — breaking a complex issue into
-              smaller pieces and working through it methodically until it's resolved.</span
-            >
+            <span>{{ 'about.points.problemSolving' | translate }}</span>
           </li>
         </ul>
       </div>

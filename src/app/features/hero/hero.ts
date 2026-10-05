@@ -1,19 +1,41 @@
-import { Component, ElementRef, HostListener, afterNextRender, signal, viewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  afterNextRender,
+  computed,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Scroll } from '../../core/services/scroll';
 
 @Component({
   selector: 'app-hero',
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })
 export class Hero {
-  protected readonly tickerItems = [
-    'Available for remote work',
-    'Full Stack Developer',
-    'Based in Arnsberg',
-    'Open to work',
-  ];
+  private readonly translate = inject(TranslateService);
+
+  // Tracks the active language as a signal, so anything derived from it
+  // (like tickerItems below) recalculates automatically when it changes
+  private readonly langChanged = toSignal(this.translate.onLangChange, {
+    initialValue: null,
+  });
+
+  protected readonly tickerItems = computed(() => {
+    this.langChanged(); // read it so this computed re-runs on language change
+    return [
+      this.translate.instant('hero.ticker.remote'),
+      this.translate.instant('hero.ticker.role'),
+      this.translate.instant('hero.ticker.location'),
+      this.translate.instant('hero.ticker.openToWork'),
+    ];
+  });
 
   protected readonly groupRepeats = signal<number[]>([0, 1, 2]);
   protected readonly marqueeDuration = signal(45);

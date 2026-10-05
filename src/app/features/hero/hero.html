@@ -1,16 +1,16 @@
 <section class="hero" id="hero">
   <div class="hero-inner">
     <div class="hero-content">
-      <span class="hero-label">Full Stack Developer</span>
+      <span class="hero-label">{{ 'hero.role' | translate }}</span>
 
       <div class="hero-title-group">
         <h1 class="hero-title">Berk Çapacı</h1>
         <div class="hero-buttons">
           <a href="#" class="btn" (click)="onCheckWorkClick($event)">
-            <span class="btn-text">Check my work</span>
+            <span class="btn-text">{{ 'hero.checkWork' | translate }}</span>
           </a>
           <a href="#" class="btn" (click)="onContactClick($event)">
-            <span class="btn-text">Contact me</span>
+            <span class="btn-text">{{ 'hero.contactMe' | translate }}</span>
           </a>
         </div>
       </div>
@@ -23,7 +23,7 @@
       <div class="indicator-line"></div>
     </div>
 
-    <a href="mailto:berkcapaci@gmail.com" class="hero-email">berkcapaci&#64;gmail.com</a>
+    <a href="mailto:berkcapaci.de@gmail.com" class="hero-email">berkcapaci.de&#64;gmail.com</a>
     <div class="hero-social-icons">
       <a
         href="https://github.com/berkcapaci"
@@ -56,7 +56,7 @@
       @for (group of [0, 1]; track group) {
         <div class="marquee-group" #marqueeGroup>
           @for (repeat of groupRepeats(); track repeat) {
-            @for (item of tickerItems; track $index) {
+            @for (item of tickerItems(); track $index) {
               <span class="dot"></span>
               <span class="marquee-text">{{ item }}</span>
             }

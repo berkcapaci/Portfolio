@@ -1,10 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Scroll {
+  readonly activeSection = signal<string | null>(null);
+
   scrollToSection(sectionId: string): void {
+    this.activeSection.set(sectionId);
+
     const element = document.getElementById(sectionId);
 
     if (element === null) {
@@ -12,7 +16,7 @@ export class Scroll {
     }
     const startPosition = window.scrollY;
     const targetPosition = element.getBoundingClientRect().top + window.scrollY;
-    const duration = 300; //  300ms from Figma
+    const duration = 300;
 
     let startTime: number | null = null;
 
@@ -37,8 +41,10 @@ export class Scroll {
   }
 
   scrollToTop(): void {
+    this.activeSection.set(null);
+
     const startPosition = window.scrollY;
-    const duration = 300; // Consistent with scrollToSection
+    const duration = 300;
 
     let startTime: number | null = null;
 

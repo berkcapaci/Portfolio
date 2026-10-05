@@ -36,12 +36,14 @@
   gap: 24px;
 }
 
-.legal-imprint {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 1032px;
-  max-width: 100%;
+// Section headings: same size and weight as the body text, white like in the Impressum
+.legal-heading {
+  font-family: $font-secondary;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 120%;
+  color: $color-white;
+  margin: 0;
 }
 
 .legal-text {

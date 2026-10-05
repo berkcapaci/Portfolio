@@ -1,15 +1,17 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Scroll } from '../../services/scroll';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink],
+  imports: [RouterLink, TranslatePipe],
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
 })
 export class Footer {
   private readonly scroll = inject(Scroll);
+  private readonly router = inject(Router);
   private readonly logoHovered = signal(false);
 
   get logoIcon(): string {
@@ -22,6 +24,12 @@ export class Footer {
 
   scrollToTop(event: Event): void {
     event.preventDefault();
-    this.scroll.scrollToTop();
+
+    const path = this.router.url.split('#')[0];
+    if (path === '/') {
+      this.scroll.scrollToTop();
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 }

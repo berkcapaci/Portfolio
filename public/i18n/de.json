@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "about": "Über mich",
+    "skills": "Fähigkeiten",
+    "projects": "Projekte"
+  },
+  "hero": {
+    "role": "Fullstack Developer",
+    "checkWork": "Meine Arbeit ansehen",
+    "contactMe": "Kontaktiere mich",
+    "ticker": {
+      "remote": "Verfügbar für Remote-Arbeit",
+      "role": "Fullstack Developer",
+      "location": "Lebt in Arnsberg",
+      "openToWork": "Offen für neue Möglichkeiten"
+    }
+  },
+  "about": {
+    "eyebrow": "Wer ich bin",
+    "title": "Über mich",
+    "text": "Ich bin Berk, ein Fullstack-Entwickler mit einem Maschinenbau-Hintergrund. Bevor ich in die Softwareentwicklung wechselte, war ich im Qualitätsmanagement und in der Projektplanung tätig – Aufgabenbereiche, die mich dazu gebracht haben, genau auf Details zu achten, Prozesse konsequent einzuhalten und niemals etwas zu liefern, das ich nicht vollständig verstanden habe. Diese Denkweise habe ich direkt in die Programmierung übernommen: Mir ist wichtig, warum etwas funktioniert, und nicht nur, dass es funktioniert.",
+    "points": {
+      "location": "Ich lebe in Arnsberg, Deutschland – offen für Remote-Arbeit und einen Umzug, wenn die Gelegenheit passt.",
+      "learning": "Als Ingenieur bin ich es gewohnt, neue Werkzeuge und Standards schnell zu erlernen, und bleibe neugierig auf neue Technologien in der Webentwicklung.",
+      "problemSolving": "Meine wahre Leidenschaft galt schon immer der Problemlösung – einem komplexen Problem in kleinere Teile zu zerlegen und es methodisch anzugehen, bis es gelöst ist."
+    }
+  },
+  "skills": {
+    "eyebrow": "Technologien",
+    "title": "Skill Set",
+    "text": "Ich konzentriere mich darauf, saubere, barrierefreie Oberflächen mit HTML, CSS und JavaScript zu entwickeln, und baue meine Fähigkeiten im gesamten Fullstack-Bereich mit Angular, TypeScript und Backend-Grundlagen weiter aus. Mir ist wichtig, bei neuen Tools und Best Practices auf dem neuesten Stand zu bleiben, denn die Webentwicklung entwickelt sich schnell und ich möchte nicht den Anschluss verlieren.",
+    "cta": {
+      "titleStart": "Du brauchst",
+      "titleHighlight": "eine weitere Fähigkeit?",
+      "text": "Melde dich gerne bei mir. Ich freue mich darauf, mein bisheriges Wissen zu erweitern.",
+      "button": "Lass uns reden"
+    },
+    "growthMindset": "Growth Mindset",
+    "tooltip": "Ich habe ein besonderes Interesse daran, zu lernen"
+  },
+  "projects": {
+    "eyebrow": "Portfolio",
+    "title": "Ausgewählte Projekte",
+    "description": "Wirf unten einen Blick auf einige meiner Projekte – klicke auf eines, um mehr Details zu sehen.",
+    "modal": {
+      "question": "Worum geht es in diesem Projekt?",
+      "liveTest": "Live-Test",
+      "next": "Nächstes Projekt",
+      "close": "Schließen"
+    },
+    "items": {
+      "join": {
+        "description": "Aufgabenverwaltung nach dem Kanban-System. Erstelle und organisiere Aufgaben per Drag-and-drop und weise Benutzer und Kategorien zu."
+      },
+      "elPolloLoco": {
+        "description": "Jump-and-Run-Spiel mit Wurfmechanik, aufgebaut nach dem objektorientierten Ansatz. Hilf Pepe, Münzen und Tabasco-Salsa zu finden, um gegen die verrückte Henne zu kämpfen."
+      },
+      "pokedex": {
+        "description": "Responsiver Pokédex, der Live-Daten von der PokéAPI abruft. Durchsuche Pokémon-Karten, suche nach Namen und entdecke Werte, Typen und Entwicklungsketten in einem interaktiven Dialog."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Kontakt",
+    "title": "Arbeiten wir zusammen",
+    "aboutTitle": "Hast du ein Problem zu lösen?",
+    "aboutText": "Du hast eine Idee oder eine Position im Sinn? Ich würde gerne davon hören und sehen, wie ich dabei helfen kann, sie umzusetzen.",
+    "cta": {
+      "start": "Du suchst einen Fullstack-Entwickler?",
+      "highlight": "Lass uns reden!"
+    },
+    "form": {
+      "name": {
+        "label": "Wie heißt du?",
+        "placeholder": "Dein Name hier"
+      },
+      "email": {
+        "label": "Wie lautet deine E-Mail?",
+        "placeholder": "deinemail@email.de"
+      },
+      "message": {
+        "label": "Wie kann ich dir helfen?",
+        "placeholder": "Hallo Berk, ich interessiere mich für..."
+      }
+    },
+    "errors": {
+      "name": {
+        "required": "Hoppla! Dein Name scheint zu fehlen",
+        "invalid": "Dein Name ist zu kurz"
+      },
+      "email": {
+        "required": "Hoppla! Deine E-Mail wird benötigt",
+        "invalid": "Bitte gib eine gültige E-Mail-Adresse ein"
+      },
+      "message": {
+        "required": "Was soll ich für dich entwickeln?",
+        "invalid": "Deine Nachricht ist zu kurz"
+      }
+    },
+    "privacy": {
+      "start": "Ich habe die",
+      "link": "Datenschutzerklärung",
+      "end": "gelesen und stimme der Verarbeitung meiner Daten wie beschrieben zu.",
+      "error": "Bitte akzeptiere die Datenschutzerklärung."
+    },
+    "button": {
+      "send": "Sag Hallo ;)",
+      "sending": "Wird gesendet..."
+    },
+    "status": {
+      "success": "Danke! Deine Nachricht wurde gesendet.",
+      "error": "Etwas ist schiefgelaufen. Bitte versuche es später erneut."
+    }
+  },
+  "footer": {
+    "role": "Fullstack Developer",
+    "location": "Arnsberg Deutschland",
+    "email": "E-Mail",
+    "legal": "Impressum"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "about": "About me",
+    "skills": "Skills",
+    "projects": "Projects"
+  },
+  "hero": {
+    "role": "Fullstack Developer",
+    "checkWork": "Check my work",
+    "contactMe": "Contact me",
+    "ticker": {
+      "remote": "Available for remote work",
+      "role": "Fullstack Developer",
+      "location": "Based in Arnsberg",
+      "openToWork": "Open to work"
+    }
+  },
+  "about": {
+    "eyebrow": "Who I Am",
+    "title": "About me",
+    "text": "I'm Berk, a Fullstack Developer with a background in Mechanical Engineering. Before moving into software, I worked in quality and project engineering — roles that trained me to look closely at details, follow processes rigorously, and never ship something I haven't fully understood. That mindset carried directly into coding: I care about why something works, not just that it works.",
+    "points": {
+      "location": "Based in Arnsberg, Germany — open to remote work and relocation for the right opportunity.",
+      "learning": "Coming from engineering, I'm used to learning new tools and standards quickly, and I stay curious about new technologies in web development.",
+      "problemSolving": "My real passion has always been problem solving — breaking a complex issue into smaller pieces and working through it methodically until it's resolved."
+    }
+  },
+  "skills": {
+    "eyebrow": "Technologies",
+    "title": "Skill Set",
+    "text": "I focus on building clean, accessible interfaces with HTML, CSS and JavaScript, and I'm growing my skills across the full stack with Angular, TypeScript and backend fundamentals. I make a point of staying current with new tools and best practices, because web development moves fast and I don't want to fall behind.",
+    "cta": {
+      "titleStart": "You need",
+      "titleHighlight": "another skill?",
+      "text": "Feel free to contact me. I look forward to expanding on my previous knowledge.",
+      "button": "Let's Talk"
+    },
+    "growthMindset": "Growth mindset",
+    "tooltip": "I have a special interest in learning"
+  },
+  "projects": {
+    "eyebrow": "Portfolio",
+    "title": "Featured Projects",
+    "description": "Take a look at a few of my projects below — click on one to see it in more detail.",
+    "modal": {
+      "question": "What is this project about?",
+      "liveTest": "Live Test",
+      "next": "Next project",
+      "close": "Close"
+    },
+    "items": {
+      "join": {
+        "description": "Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories."
+      },
+      "elPolloLoco": {
+        "description": "Jump, run and throw game based on object-oriented approach. Help Pepe to find coins and tabasco salsa to fight against the crazy hen."
+      },
+      "pokedex": {
+        "description": "Responsive Pokédex that fetches live data from the PokéAPI. Browse Pokémon cards, search by name, and explore detailed stats, types and evolution chains in an interactive dialog."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact me",
+    "title": "Let's work together",
+    "aboutTitle": "Got a problem to solve?",
+    "aboutText": "Have an idea or a role in mind? I'd love to hear about it and see how I can help bring it to life.",
+    "cta": {
+      "start": "Need a Fullstack developer?",
+      "highlight": "Let's talk!"
+    },
+    "form": {
+      "name": {
+        "label": "What's your name?",
+        "placeholder": "Your name goes here"
+      },
+      "email": {
+        "label": "What's your email?",
+        "placeholder": "youremail@email.com"
+      },
+      "message": {
+        "label": "How can I help you?",
+        "placeholder": "Hello Berk, I am interested in..."
+      }
+    },
+    "errors": {
+      "name": {
+        "required": "Oops! it seems your name is missing",
+        "invalid": "Your name is too short"
+      },
+      "email": {
+        "required": "Oops! your email is required",
+        "invalid": "Please enter a valid email address"
+      },
+      "message": {
+        "required": "What do you need to develop?",
+        "invalid": "Your message is too short"
+      }
+    },
+    "privacy": {
+      "start": "I've read the",
+      "link": "privacy policy",
+      "end": "and agree to the processing of my data as outlined.",
+      "error": "Please accept the privacy policy."
+    },
+    "button": {
+      "send": "Say Hello ;)",
+      "sending": "Sending..."
+    },
+    "status": {
+      "success": "Thank you! Your message has been sent.",
+      "error": "Something went wrong. Please try again later."
+    }
+  },
+  "footer": {
+    "role": "Fullstack Developer",
+    "location": "Arnsberg Germany",
+    "email": "Email",
+    "legal": "Legal Notice"
+  }
+}

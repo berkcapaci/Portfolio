@@ -2,6 +2,8 @@ export interface Skill {
   name: string;
   icon: string;
   iconTeal?: string;
+  // Translation key for the visible label; falls back to `name` when missing
+  labelKey?: string;
 }
 
 export const SKILLS: Skill[] = [
@@ -59,5 +61,6 @@ export const SKILLS: Skill[] = [
     name: 'Growth mindset',
     icon: 'icons/skillsetphotos/GrowthMindset.svg',
     iconTeal: 'icons/skillsetphotos_teal/GrowthMindset_tealversion.svg',
+    labelKey: 'skills.growthMindset',
   },
 ];

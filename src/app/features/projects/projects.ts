@@ -1,9 +1,10 @@
 import { Component, signal, ElementRef, QueryList, ViewChildren, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { SKILLS } from '../../core/data/skills-data';
 
 @Component({
-  imports: [],
+  imports: [TranslatePipe],
   selector: 'app-projects',
   styleUrl: './projects.scss',
   templateUrl: './projects.html',
@@ -13,8 +14,7 @@ export class Projects {
     {
       number: '01',
       name: 'Join',
-      description:
-        'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.',
+      descriptionKey: 'projects.items.join.description',
       technologies: ['Angular', 'TypeScript', 'CSS', 'HTML', 'Supabase'],
       githubUrl: 'https://github.com/berkcapaci/ElPolloLoco',
       liveUrl: 'https://berkcapaci.developerakademie.net/ElPolloLoco/index.html',
@@ -23,8 +23,7 @@ export class Projects {
     {
       number: '02',
       name: 'El Pollo Loco',
-      description:
-        'Jump, run and throw game based on object-oriented approach. Help Pepe to find coins and tabasco salsa to fight against the crazy hen.',
+      descriptionKey: 'projects.items.elPolloLoco.description',
       technologies: ['JavaScript', 'HTML', 'CSS'],
       githubUrl: 'https://github.com/berkcapaci/ElPolloLoco',
       liveUrl: 'https://berkcapaci.developerakademie.net/ElPolloLoco/index.html',
@@ -33,8 +32,7 @@ export class Projects {
     {
       number: '03',
       name: 'Pokedex',
-      description:
-        'Responsive Pokédex that fetches live data from the PokéAPI. Browse Pokémon cards, search by name, and explore detailed stats, types and evolution chains in an interactive dialog.',
+      descriptionKey: 'projects.items.pokedex.description',
       technologies: ['JavaScript', 'HTML', 'CSS'],
       githubUrl: 'https://github.com/berkcapaci/Pokedex',
       liveUrl: 'https://berkcapaci.developerakademie.net/Pokedex/index.html',

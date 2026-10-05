@@ -2,13 +2,11 @@
   <div class="projects-inner">
     <div class="projects-content">
       <div class="projects-header">
-        <span class="projects-eyebrow">Portfolio</span>
-        <h2 class="projects-title">Featured Projects</h2>
+        <span class="projects-eyebrow">{{ 'projects.eyebrow' | translate }}</span>
+        <h2 class="projects-title">{{ 'projects.title' | translate }}</h2>
       </div>
 
-      <p class="projects-description">
-        Take a look at a few of my projects below — click on one to see it in more detail.
-      </p>
+      <p class="projects-description">{{ 'projects.description' | translate }}</p>
 
       <div class="projects-list-wrapper">
         <ul class="projects-list" #projectsList>
@@ -61,7 +59,11 @@
   @if (selectedIndex() !== null) {
     <div class="modal-overlay" (click)="closeModal()">
       <div class="modal" (click)="$event.stopPropagation()">
-        <button class="modal-close" (click)="closeModal()" aria-label="Close">
+        <button
+          class="modal-close"
+          (click)="closeModal()"
+          [attr.aria-label]="'projects.modal.close' | translate"
+        >
           <span class="modal-close-icon"></span>
         </button>
 
@@ -72,8 +74,10 @@
           </div>
 
           <div class="modal-description-block">
-            <span class="modal-question">What is this project about?</span>
-            <p class="modal-description">{{ projects[selectedIndex()!].description }}</p>
+            <span class="modal-question">{{ 'projects.modal.question' | translate }}</span>
+            <p class="modal-description">
+              {{ projects[selectedIndex()!].descriptionKey | translate }}
+            </p>
 
             <div class="modal-tech-list">
               @for (tech of projects[selectedIndex()!].technologies; track tech) {
@@ -105,7 +109,7 @@
               rel="noopener noreferrer"
               class="btn-secondary"
             >
-              <span class="btn-secondary-text">Live Test</span>
+              <span class="btn-secondary-text">{{ 'projects.modal.liveTest' | translate }}</span>
               <span class="btn-secondary-arrow-box">
                 <img src="icons/arrow_outward.svg" alt="" class="btn-secondary-arrow" />
               </span>
@@ -125,7 +129,7 @@
         </div>
 
         <button class="modal-next" (click)="nextProject()">
-          <span class="modal-next-text">Next project</span>
+          <span class="modal-next-text">{{ 'projects.modal.next' | translate }}</span>
           <span class="modal-next-arrow-box">
             <img src="icons/arrow_forward.svg" alt="" class="modal-next-arrow" />
           </span>

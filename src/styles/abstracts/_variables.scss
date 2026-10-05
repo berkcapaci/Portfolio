@@ -1,13 +1,27 @@
 // Colors
-$color-primary: #3DCFB6;
-$color-primary-light: #6AD7BF;
+$color-primary: #3dcfb6;
+$color-primary-light: #6ad7bf;
 $color-primary-50: rgba(61, 207, 182, 0.5);
-$color-dark: #1C1C1C;
-$color-dark-teal: #08463B;
-$color-white: #FFFFFF;
-$color-light-gray: #D9D9D9;
+$color-dark: #1c1c1c;
+$color-dark-teal: #08463b;
+$color-white: #ffffff;
+$color-light-gray: #d9d9d9;
 $font-secondary: 'Karla', sans-serif;
 
 // Fonts
 $font-mono: 'Fira Code', monospace;
-$font-logo: 'Berkshire Swash', cursive; // Used only for the "Berk Çapacı" wordmark 
+$font-logo: 'Berkshire Swash', cursive; // Used only for the "Berk Çapacı" wordmark
+
+// Layout
+$content-max-width: 1440px;
+$section-padding-x: 96px;
+$section-padding-y: 144px;
+
+// Mobile: the side gap is from Figma (390px frame), the vertical gap is still my guess
+$section-padding-x-mobile: 16px;
+$section-padding-y-mobile: 64px;
+
+// Header
+$header-height: 98px;
+// 32px top gap + 50px header frame (Figma)
+$header-height-mobile: 82px;

@@ -1,31 +1,24 @@
 <section class="skills" id="skills">
   <div class="skills-inner">
     <div class="skills-text">
-      <span class="skills-eyebrow">Technologies</span>
+      <span class="skills-eyebrow">{{ 'skills.eyebrow' | translate }}</span>
       <div class="skills-card">
-        <h2 class="skills-title">Skill Set</h2>
+        <h2 class="skills-title">{{ 'skills.title' | translate }}</h2>
 
         <div class="skills-description">
-          <p class="skills-text-block">
-            I focus on building clean, accessible interfaces with HTML, CSS and JavaScript, and I'm
-            growing my skills across the full stack with Angular, TypeScript and backend
-            fundamentals. I make a point of staying current with new tools and best practices,
-            because web development moves fast and I don't want to fall behind.
-          </p>
+          <p class="skills-text-block">{{ 'skills.text' | translate }}</p>
 
           <div class="skills-cta">
             <h3 class="skills-cta-title">
-              <span class="text-white">You need </span>
-              <span class="text-primary">another skill?</span>
+              <span class="text-white">{{ 'skills.cta.titleStart' | translate }} </span>
+              <span class="text-primary">{{ 'skills.cta.titleHighlight' | translate }}</span>
             </h3>
-            <p class="skills-cta-text">
-              Feel free to contact me. I look forward to expanding on my previous knowledge.
-            </p>
+            <p class="skills-cta-text">{{ 'skills.cta.text' | translate }}</p>
           </div>
         </div>
 
         <a href="#" class="btn" (click)="onLetsTalkClick($event)">
-          <span class="btn-text">Let's Talk</span>
+          <span class="btn-text">{{ 'skills.cta.button' | translate }}</span>
         </a>
       </div>
     </div>
@@ -41,12 +34,14 @@
               <img [src]="skill.icon" [alt]="skill.name" />
             }
           </div>
-          <span class="skill-name" [class.growth-mindset-name]="skill.name === 'Growth mindset'">{{ skill.name }}</span>
+          <span class="skill-name" [class.growth-mindset-name]="skill.name === 'Growth mindset'">{{
+            skill.labelKey ? (skill.labelKey | translate) : skill.name
+          }}</span>
 
           @if (skill.name === 'Growth mindset') {
             <div class="skill-tooltip">
               <div class="skill-tooltip-box">
-                <p class="skill-tooltip-text">I have a special interest in learning</p>
+                <p class="skill-tooltip-text">{{ 'skills.tooltip' | translate }}</p>
                 <div class="skill-tooltip-items">
                   <div class="skill-tooltip-item">
                     <span class="skill-tooltip-icon-box">

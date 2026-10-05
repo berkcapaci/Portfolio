@@ -2,18 +2,16 @@
   <div class="contact-inner">
     <div class="contact-text">
       <div class="contact-heading">
-        <p class="eyebrow">Contact me</p>
-        <h2 class="title">Let's work together</h2>
+        <p class="eyebrow">{{ 'contact.eyebrow' | translate }}</p>
+        <h2 class="title">{{ 'contact.title' | translate }}</h2>
       </div>
 
       <div class="about-box">
-        <h3 class="about-title">Got a problem to solve?</h3>
-        <p class="about-desc">
-          Have an idea or a role in mind? I'd love to hear about it and see how I can help bring it
-          to life.
-        </p>
+        <h3 class="about-title">{{ 'contact.aboutTitle' | translate }}</h3>
+        <p class="about-desc">{{ 'contact.aboutText' | translate }}</p>
         <p class="about-cta">
-          Need a Fullstack developer? <span class="highlight">Let's talk!</span>
+          {{ 'contact.cta.start' | translate }}
+          <span class="highlight">{{ 'contact.cta.highlight' | translate }}</span>
         </p>
       </div>
     </div>
@@ -21,12 +19,12 @@
     <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
       <div class="form-fields">
         <div class="form-field">
-          <label for="name">What's your name?</label>
+          <label for="name">{{ 'contact.form.name.label' | translate }}</label>
           <input
             id="name"
             type="text"
             formControlName="name"
-            [placeholder]="errorMessage('name') || 'Your name goes here'"
+            [placeholder]="errorMessage('name') || ('contact.form.name.placeholder' | translate)"
             [class.form-input--error]="!!errorMessage('name')"
           />
           @if (hasInlineError('name')) {
@@ -35,12 +33,12 @@
         </div>
 
         <div class="form-field">
-          <label for="email">What's your email?</label>
+          <label for="email">{{ 'contact.form.email.label' | translate }}</label>
           <input
             id="email"
             type="email"
             formControlName="email"
-            [placeholder]="errorMessage('email') || 'youremail@email.com'"
+            [placeholder]="errorMessage('email') || ('contact.form.email.placeholder' | translate)"
             [class.form-input--error]="!!errorMessage('email')"
           />
           @if (hasInlineError('email')) {
@@ -49,11 +47,13 @@
         </div>
 
         <div class="form-field">
-          <label for="message">How can I help you?</label>
+          <label for="message">{{ 'contact.form.message.label' | translate }}</label>
           <textarea
             id="message"
             formControlName="message"
-            [placeholder]="errorMessage('message') || 'Hello Berk, I am interested in...'"
+            [placeholder]="
+              errorMessage('message') || ('contact.form.message.placeholder' | translate)
+            "
             [class.form-input--error]="!!errorMessage('message')"
           ></textarea>
           @if (hasInlineError('message')) {
@@ -74,36 +74,38 @@
           </label>
 
           <p class="privacy-text">
-            I've read the
-            <a routerLink="/privacy-policy" class="privacy-link">privacy policy</a>
-            and agree to the processing of my data as outlined.
+            {{ 'contact.privacy.start' | translate }}
+            <a routerLink="/privacy-policy" class="privacy-link">{{
+              'contact.privacy.link' | translate
+            }}</a>
+            {{ 'contact.privacy.end' | translate }}
           </p>
         </div>
 
         @if (privacyError) {
-          <span class="privacy-error">Please accept the privacy policy.</span>
+          <span class="privacy-error">{{ 'contact.privacy.error' | translate }}</span>
         }
 
         <button type="submit" class="btn" [disabled]="status() === 'sending'">
           <span class="btn-text">
             @switch (status()) {
               @case ('sending') {
-                Sending...
+                {{ 'contact.button.sending' | translate }}
               }
               @default {
-                Say Hello ;)
+                {{ 'contact.button.send' | translate }}
               }
             }
           </span>
         </button>
 
         @if (status() === 'success') {
-          <p class="form-status form-status--success">Thank you! Your message has been sent.</p>
+          <p class="form-status form-status--success">
+            {{ 'contact.status.success' | translate }}
+          </p>
         }
         @if (status() === 'error') {
-          <p class="form-status form-status--error">
-            Something went wrong. Please try again later.
-          </p>
+          <p class="form-status form-status--error">{{ 'contact.status.error' | translate }}</p>
         }
       </div>
     </form>

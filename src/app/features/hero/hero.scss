@@ -3,8 +3,16 @@
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh; // Excludes the mobile address bar, so the title is truly centered
+  margin-top: -$header-height;
+  padding-top: $header-height;
   overflow: hidden;
   background: linear-gradient(55.22deg, $color-dark 36.26%, $color-dark-teal 93.28%);
+
+  @include mobile {
+    margin-top: -$header-height-mobile;
+    padding-top: $header-height-mobile;
+  }
 }
 
 .hero-inner {
@@ -17,6 +25,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @include mobile {
+    padding: 0 12px; // Figma: the title block is 12px from both sides
+  }
 }
 
 .hero-content {
@@ -41,6 +53,10 @@
   line-height: 100%;
   letter-spacing: normal;
   color: $color-light-gray;
+
+  @include mobile {
+    font-size: clamp(16px, 6vw, 40px); // My guess, replace with the Figma value
+  }
 }
 
 .hero-title {
@@ -51,11 +67,22 @@
   letter-spacing: -2.56px;
   color: $color-light-gray;
   margin: 0;
+
+  @include mobile {
+    font-size: clamp(40px, 16vw, 128px); // My guess, replace with the Figma value
+  }
 }
 
 .hero-buttons {
   display: flex;
   gap: 48px;
+
+  @include mobile {
+    // Wrapping keeps the narrowest screens (320px) from overflowing
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px 24px; // My guess, the Figma gap looks like roughly 24px
+  }
 }
 
 .marquee {

@@ -1,6 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ContactMail } from '../../core/services/contact-mail';
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error';
@@ -11,13 +13,20 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 @Component({
   selector: 'app-contact',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, TranslatePipe],
   templateUrl: './contact.html',
   styleUrl: './contact.scss',
 })
 export class Contact {
   private readonly fb = inject(NonNullableFormBuilder);
   private readonly mail = inject(ContactMail);
+  private readonly translate = inject(TranslateService);
+
+  // Tracks language changes as a signal, so error messages re-render
+  // in the new language while they are visible
+  private readonly langChanged = toSignal(this.translate.onLangChange, {
+    initialValue: null,
+  });
 
   readonly status = signal<FormStatus>('idle');
 
@@ -46,22 +55,14 @@ export class Contact {
 
   // Errors are shown only after the user left the field (touched)
   errorMessage(field: FieldName): string {
+    this.langChanged(); // read so the template re-runs when the language changes
+
     const control = this.form.controls[field];
     if (!control.touched || control.valid) return '';
 
-    if (control.hasError('required')) {
-      return {
-        name: 'Oops! it seems your name is missing',
-        email: 'Hoppla! your email is required',
-        message: 'What do you need to develop?',
-      }[field];
-    }
-    // Not from Figma
-    return {
-      name: 'Your name is too short',
-      email: 'Please enter a valid email address',
-      message: 'Your message is too short',
-    }[field];
+    // "required" texts come from Figma, "invalid" texts are my own wording
+    const type = control.hasError('required') ? 'required' : 'invalid';
+    return this.translate.instant(`contact.errors.${field}.${type}`);
   }
 
   // True only when the field has content but fails a non-required rule
