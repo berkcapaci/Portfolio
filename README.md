@@ -1,59 +1,90 @@
-# PortfolioApp
+# Berk Çapacı – Portfolio
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.8.
+Personal portfolio website of **Berk Çapacı**, Fullstack Developer based in Arnsberg, Germany.
 
-## Development server
+🔗 **Live:** [berkcapaci.developerakademie.net/Portfolio](https://berkcapaci.developerakademie.net/Portfolio/)
 
-To start a local development server, run:
+---
+
+## About
+
+A single-page portfolio built with Angular that introduces me, my skills and my projects, and lets visitors get in touch through a contact form. The site is fully responsive from 320px up to large desktop screens and available in English and German.
+
+## Features
+
+- **Bilingual (EN/DE)** – language switch in the header, the choice is saved in the browser and the browser language is used on the first visit
+- **Responsive layout** – separate desktop, tablet and mobile layouts, tested from 320px to 1440px+
+- **Scroll spy navigation** – the header highlights the section currently in view
+- **Project showcase** – hover preview on desktop and a detail modal with technologies, GitHub and live links (closes with Esc or a click outside)
+- **Contact form** – reactive form with validation, privacy checkbox and email delivery via EmailJS
+- **Legal pages** – Impressum and Datenschutzerklärung (German)
+- **Accessibility details** – reduced motion support, ARIA labels, keyboard support for the modal
+
+## Tech Stack
+
+| Area | Tools |
+|---|---|
+| Framework | Angular (standalone components, signals) |
+| Language | TypeScript |
+| Styling | SCSS (7-1 structure, variables, mixins, breakpoints) |
+| Translations | ngx-translate |
+| Forms | Angular Reactive Forms |
+| Email | EmailJS |
+| Fonts | Fira Code, Karla, Berkshire Swash (self-hosted) |
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── core/
+│   │   ├── layout/        # header, footer
+│   │   ├── services/      # scroll, language, contact mail
+│   │   ├── data/          # skills data
+│   │   └── config/        # EmailJS config
+│   ├── features/          # hero, about, skills, projects, contact
+│   └── pages/             # home, legal notice, privacy policy
+└── styles/                # abstracts, base, main
+public/
+├── i18n/                  # en.json, de.json
+├── icons/
+└── images/
+```
+
+## Getting Started
+
+**Requirements:** Node.js and the Angular CLI
 
 ```bash
+# Clone the repository
+git clone https://github.com/berkcapaci/Portfolio.git
+cd Portfolio
+
+# Install dependencies
+npm install
+
+# Start the development server
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open [http://localhost:4200](http://localhost:4200) in your browser.
 
-## Code scaffolding
+## Build & Deployment
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The site is deployed to a subfolder, so the base href is set at build time:
 
 ```bash
-ng generate --help
+ng build --base-href /Portfolio/
 ```
 
-## Building
+The output in `dist/portfolio-app/browser/` is uploaded via FTP. Routing uses hash URLs (`/#/impress`), so pages can be reloaded on servers without rewrite rules.
 
-To build the project run:
+## Contact
 
-```bash
-ng build
-```
+- 📧 berkcapaci.de@gmail.com
+- 💼 [LinkedIn](https://www.linkedin.com/in/berkcapaci/)
+- 🐙 [GitHub](https://github.com/berkcapaci)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+© Berk Çapacı
