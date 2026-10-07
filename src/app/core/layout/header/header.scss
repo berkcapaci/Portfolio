@@ -133,6 +133,7 @@ nav a {
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  text-decoration: none;
 
   span {
     font-family: $font-logo;
@@ -189,39 +190,42 @@ button {
   cursor: pointer;
 
   @include mobile {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   img {
-    width: 100%;
-    height: 100%;
-    filter: brightness(0) invert(1); // Makes the icon white, whatever color the SVG has
+    width: 32px; // Figma: the icon itself is 32px wide inside the 48x48 box
+    height: auto;
+    display: block;
   }
 }
 
 .mobile-menu {
   position: absolute;
   top: 100%;
-  right: 16px;
-  width: 238px;
-  height: 252px;
+  right: $section-padding-x-mobile;
+  // Figma: 238px wide. min-width lets longer German words grow the box
+  min-width: 238px;
+  width: max-content;
+  padding: 40px 60px;
   border-radius: 30px;
   border: 1px solid $color-primary;
-  padding: 40px 77px;
   background: linear-gradient(55.22deg, $color-dark 36.26%, $color-dark-teal 93.28%);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 24px;
 
   a {
     font-family: $font-mono;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.03em;
     color: $color-white;
     text-decoration: none;
     white-space: nowrap;
-  }
-
-  span {
-    font-family: $font-mono;
-    color: $color-white;
   }
 }

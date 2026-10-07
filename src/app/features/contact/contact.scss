@@ -5,13 +5,22 @@
 }
 
 .contact-inner {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 144px 96px 0;
-  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   gap: 64px;
+  @include section-inner;
+
+  // Not enough room for the text and the form side by side, same breakpoint as the other sections
+  @media (max-width: 1280px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    gap: 64px;
+  }
 }
 
 // ---------- Left column: text block ----------
@@ -21,31 +30,55 @@
   flex-direction: column;
   gap: 40px;
   width: 568px;
+
+  @media (max-width: 1280px) {
+    width: 616px; // Same width as the form, so both blocks line up
+    max-width: 100%;
+  }
+
+  @include mobile {
+    width: 100%;
+    max-width: 616px;
+    gap: 32px;
+  }
 }
 
 .contact-heading {
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @include mobile {
+    gap: 16px;
+  }
 }
 
 .eyebrow {
-  font-family: $font-secondary; // Karla
+  font-family: $font-secondary;
   font-weight: 500;
   font-size: 24px;
   line-height: 100%;
   color: $color-primary;
   margin: 0;
+
+  @include mobile {
+    font-size: 18px;
+    line-height: 21px;
+  }
 }
 
 .title {
-  font-family: $font-mono; // Fira Code
+  font-family: $font-mono;
   font-weight: 700;
   font-size: 64px;
   line-height: 100%;
   letter-spacing: -0.03em;
   color: $color-primary;
   margin: 0;
+
+  @include mobile {
+    font-size: min(56px, calc((100vw - 32px) / 5.8));
+  }
 }
 
 .about-box {
@@ -63,6 +96,10 @@
   line-height: 120%;
   color: $color-primary;
   margin: 0;
+
+  @include mobile {
+    font-size: 20px;
+  }
 }
 
 .about-desc {
@@ -96,6 +133,15 @@
   gap: 40px;
   width: 616px;
   border-top: 1px solid $color-primary;
+
+  @media (max-width: 1280px) {
+    max-width: 100%;
+  }
+
+  @include mobile {
+    width: 100%;
+    max-width: 616px;
+  }
 }
 
 .form-fields {
@@ -104,22 +150,24 @@
 }
 
 .form-field {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 32px 0; // My call: real inputs stretch full width, so left/right
-  // padding from Figma's fixed-width label boxes doesn't apply
+  padding: 31px 0;
   border-top: 1px solid $color-primary-50;
   border-bottom: 1px solid $color-primary-50;
   transition: border-color 200ms ease-out;
 
-  // Hover and focus share the same border treatment as the Figma "Hover" state
+  @include mobile {
+    padding: 31px 16px;
+  }
+
   &:hover,
   &:focus-within {
     border-color: $color-primary;
   }
 
-  // Error state uses the same border color as hover (per Figma)
   &:has(.form-input--error) {
     border-color: $color-primary;
   }
@@ -130,10 +178,16 @@
     font-size: 24px;
     line-height: 120%;
     color: $color-primary;
+
+    @include mobile {
+      font-size: 20px;
+    }
   }
 
   input,
   textarea {
+    margin: 0;
+    padding: 0;
     border: none;
     background: transparent;
     outline: none;
@@ -142,7 +196,11 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 120%;
-    color: $color-white; // My guess: typed text color, not specified in Figma
+    color: $color-white;
+
+    @include mobile {
+      font-size: 16px;
+    }
 
     &::placeholder {
       color: rgba($color-white, 0.8);
@@ -154,27 +212,51 @@
   }
 
   textarea {
-    min-height: 22px;
+    field-sizing: content;
+    min-height: 1lh;
+  }
+}
+
+@supports not (field-sizing: content) {
+  .form-field textarea {
+    min-height: 4lh;
   }
 }
 
 .field-error {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 7px;
   font-family: $font-secondary;
   font-weight: 400;
   font-size: 14px;
   line-height: 120%;
   color: rgba(#ec7b7b, 0.8);
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @include mobile {
+    left: 16px;
+    right: 16px;
+  }
 }
 
 .form-footer {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 
   .btn {
-    margin-bottom: -9px; // Matches the 9px overflow seen in the Figma frame
+    margin-bottom: -9px;
+
+    @include mobile {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -238,14 +320,14 @@
   }
 }
 
-// My guess: same red as the input error text, since no hex was given for this one
 .privacy-error {
+  min-height: 1.2em;
   font-family: $font-secondary;
   font-weight: 400;
   font-size: 14px;
   line-height: 120%;
   color: rgba(#ec7b7b, 0.8);
-  margin: 0;
+  margin: -8px 0 0;
   align-self: flex-start;
 }
 
@@ -262,9 +344,20 @@
 }
 
 .form-status {
+  position: absolute;
+  top: calc(100% + 25px);
+  left: 0;
+  right: 0;
   font-family: $font-secondary;
   font-size: 16px;
+  text-align: center;
   margin: 0;
+
+  @include mobile {
+    top: calc(100% + 16px);
+    left: 16px;
+    right: 16px;
+  }
 
   &--success {
     color: $color-primary;

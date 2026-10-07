@@ -50,6 +50,7 @@
           <label for="message">{{ 'contact.form.message.label' | translate }}</label>
           <textarea
             id="message"
+            rows="1"
             formControlName="message"
             [placeholder]="
               errorMessage('message') || ('contact.form.message.placeholder' | translate)
@@ -82,9 +83,9 @@
           </p>
         </div>
 
-        @if (privacyError) {
-          <span class="privacy-error">{{ 'contact.privacy.error' | translate }}</span>
-        }
+        <span class="privacy-error" aria-live="polite">{{
+          privacyError ? ('contact.privacy.error' | translate) : ''
+        }}</span>
 
         <button type="submit" class="btn" [disabled]="status() === 'sending'">
           <span class="btn-text">

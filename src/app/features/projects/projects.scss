@@ -5,22 +5,34 @@
 }
 
 .projects-inner {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 144px 96px 0;
-  box-sizing: border-box;
   display: flex;
   gap: 96px;
   align-items: flex-start;
+  @include section-inner;
+
+  // No preview on the right here, so the list block sits in the middle, like Skills and About
+  @media (max-width: 1280px) {
+    justify-content: center;
+  }
 }
 
 .projects-content {
-  width: 880px;
+  // 560px = 96px side padding twice + the 368px the preview sticks out on the right.
+  // At 1440px this is exactly the original 880px, below that the list shrinks with the screen
+  width: min(880px, calc(100vw - 560px));
   max-width: 100%;
-  margin-bottom: 16px;
   display: flex;
   flex-direction: column;
   gap: 41px;
+
+  // No room for the preview here: same width as About, so every section shares one axis
+  @media (max-width: 1280px) {
+    width: 568px;
+  }
+
+  @include mobile {
+    gap: 32px;
+  }
 }
 
 .projects-header {
@@ -29,6 +41,10 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @include mobile {
+    gap: 16px;
+  }
 }
 
 .projects-eyebrow {
@@ -39,6 +55,11 @@
   letter-spacing: normal;
   color: $color-primary;
   margin: 0;
+
+  @include mobile {
+    font-size: 18px;
+    line-height: 21px;
+  }
 }
 
 .projects-title {
@@ -49,6 +70,11 @@
   letter-spacing: -1.92px;
   color: $color-primary;
   margin: 0;
+
+  @include mobile {
+    font-size: min(56px, calc((100vw - 32px) / 6.3));
+    letter-spacing: -0.03em;
+  }
 }
 
 .projects-description {
@@ -61,6 +87,11 @@
   text-align: justify;
   color: $color-white;
   margin: 0;
+
+  @include mobile {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
 }
 
 .projects-list-wrapper {
@@ -84,6 +115,19 @@
   cursor: pointer;
   box-sizing: border-box;
   transition: background 150ms ease-in;
+
+  // Same structure as mobile: the technologies move below the project name
+  @media (max-width: 1280px) {
+    flex-wrap: wrap;
+    padding: 32px 16px;
+    gap: 10px;
+  }
+
+  @include mobile {
+    flex-wrap: wrap;
+    padding: 32px 0;
+    gap: 10px;
+  }
 
   &:first-child {
     border-top: 1px solid $color-primary;
@@ -133,6 +177,16 @@
   display: flex;
   align-items: center;
   gap: 4px;
+
+  @media (max-width: 1280px) {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  @include mobile {
+    width: 100%;
+    flex-wrap: wrap;
+  }
 }
 
 .tech-name {
@@ -156,6 +210,11 @@
   right: -368px;
   width: 296px;
   height: 192px;
+
+  // Same breakpoint as About and Skills: not enough room on the right of the list
+  @media (max-width: 1280px) {
+    display: none;
+  }
 }
 
 .preview-image-bg {
@@ -198,6 +257,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overscroll-behavior: contain;
 }
 
 .modal {
@@ -213,22 +273,81 @@
   padding: 91px 80px;
   display: flex;
   gap: 40px;
+
+  // Side by side needs about 1200px, so below 1340px the content is stacked and scrolls
+  @media (max-width: 1340px) {
+    width: min(720px, 90vw);
+    height: 90vh;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  @include mobile {
+    width: calc(100vw - 24px);
+    max-width: none;
+    height: 100svh;
+    max-height: none;
+    padding: 0;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+}
+
+.modal-scroll {
+  display: contents;
+
+  @media (max-width: 1340px) {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    height: 100%;
+    padding: 80px 40px 40px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    height: 100%;
+    padding: 95px 12px 30px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
 }
 
 // --- Sol taraf ---
-
 .modal-info {
   width: 480px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 40px;
+
+  @media (max-width: 1340px) {
+    width: 100%;
+    gap: 32px;
+  }
+
+  @include mobile {
+    width: 100%;
+    gap: 32px;
+  }
 }
 
 .modal-heading {
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @include mobile {
+    gap: 8px;
+  }
 }
 
 .modal-number {
@@ -238,6 +357,12 @@
   line-height: 100px;
   letter-spacing: -2.56px;
   color: $color-primary;
+
+  @include mobile {
+    font-size: 72px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+  }
 }
 
 .modal-title {
@@ -248,12 +373,21 @@
   letter-spacing: -1.92px;
   color: $color-white;
   margin: 0;
+
+  @include mobile {
+    font-size: 56px;
+    letter-spacing: -0.03em;
+  }
 }
 
 .modal-description-block {
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @include mobile {
+    gap: 16px;
+  }
 }
 
 .modal-question {
@@ -262,6 +396,10 @@
   font-size: 24px;
   line-height: 120%;
   color: $color-primary;
+
+  @include mobile {
+    font-size: 20px;
+  }
 }
 
 .modal-description {
@@ -271,6 +409,10 @@
   line-height: 120%;
   color: $color-white;
   margin: 0;
+
+  @include mobile {
+    font-size: 16px;
+  }
 }
 
 .modal-tech-list {
@@ -278,6 +420,11 @@
   flex-wrap: wrap;
   gap: 16px;
   margin-top: 16px;
+
+  @include mobile {
+    gap: 12px 16px;
+    margin-top: 4px;
+  }
 }
 
 .modal-tech-item {
@@ -294,10 +441,20 @@
   justify-content: center;
   flex-shrink: 0;
 
+  @include mobile {
+    width: 20px;
+    height: 20px;
+  }
+
   img {
     width: 24px;
     height: 24px;
     object-fit: contain;
+
+    @include mobile {
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 
@@ -314,6 +471,12 @@
 .modal-buttons {
   display: flex;
   gap: 32px;
+
+  @include mobile {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px 32px;
+  }
 }
 
 .btn-secondary {
@@ -327,6 +490,10 @@
   text-decoration: none;
   box-sizing: border-box;
   transition: border-color 100ms ease-out;
+
+  @include mobile {
+    gap: 4px;
+  }
 }
 
 .btn-secondary:hover {
@@ -384,6 +551,17 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  z-index: 1;
+
+  @media (max-width: 1340px) {
+    top: 16px;
+    right: 16px;
+  }
+
+  @include mobile {
+    top: 16px;
+    right: 16px;
+  }
 }
 
 .modal-close-icon {
@@ -391,11 +569,11 @@
   width: 17.85px;
   height: 17.85px;
   background: $color-white;
-  mask-image: url('/icons/close_small.svg');
+  mask-image: var(--icon);
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
-  -webkit-mask-image: url('/icons/close_small.svg');
+  -webkit-mask-image: var(--icon);
   -webkit-mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
@@ -410,7 +588,6 @@
   height: 25.38px;
   background: $color-primary;
 }
-
 .modal-image {
   position: absolute;
   top: 143px;
@@ -425,13 +602,47 @@
     height: 100%;
     object-fit: cover;
   }
+
+  // Stacked: the image sits above the text and keeps the same ratio as the desktop one
+  @media (max-width: 1340px) {
+    position: relative;
+    top: auto;
+    right: auto;
+    order: -1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 520 / 370;
+    flex-shrink: 0;
+
+    img {
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  @include mobile {
+    position: relative;
+    top: auto;
+    right: auto;
+    order: -1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 342 / 216;
+    flex-shrink: 0;
+    border-radius: 16px;
+
+    img {
+      position: absolute;
+      inset: 0;
+    }
+  }
 }
 
 .modal-next {
   position: absolute;
   bottom: 55px;
   right: 78px;
-  width: 148px;
+  width: max-content;
   height: 40px;
   display: inline-flex;
   align-items: center;
@@ -440,6 +651,22 @@
   border: none;
   cursor: pointer;
   padding: 0;
+
+  @media (max-width: 1340px) {
+    position: static;
+    align-self: flex-end;
+    margin-top: auto;
+    flex-shrink: 0;
+    width: auto;
+  }
+
+  @include mobile {
+    position: static;
+    align-self: flex-end;
+    margin: auto 4px 0 0;
+    flex-shrink: 0;
+    width: auto;
+  }
 }
 
 .modal-next-text {
@@ -448,7 +675,12 @@
   font-size: 18px;
   line-height: 120%;
   color: $color-primary;
+  white-space: nowrap;
   transition: color 100ms ease-in;
+
+  @include mobile {
+    font-size: 16px;
+  }
 }
 
 .modal-next:hover .modal-next-text {

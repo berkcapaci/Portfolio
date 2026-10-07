@@ -31,14 +31,16 @@
         >
       </nav>
     </div>
-    <div class="logo">
+    <a class="logo" href="/" (click)="onLogoClick($event)">
       <div class="logo-icon">
         <img src="icons/logo.svg" alt="Berk Capaci logo" class="logo-default" />
         <img src="icons/logo_hover.svg" alt="" class="logo-outline" />
       </div>
       <span>Berk Çapacı</span>
-    </div>
-    <button (click)="toggleMenu()"><img src="icons/menu.svg" alt="hamburger menu icon" /></button>
+    </a>
+    <button class="menu-button" (click)="toggleMenu()">
+      <img src="icons/menu.svg" alt="hamburger menu icon" />
+    </button>
 
     @if (isMenuOpen()) {
       <div class="mobile-menu">

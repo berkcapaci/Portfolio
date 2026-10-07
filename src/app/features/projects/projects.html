@@ -64,76 +64,78 @@
           (click)="closeModal()"
           [attr.aria-label]="'projects.modal.close' | translate"
         >
-          <span class="modal-close-icon"></span>
+          <span class="modal-close-icon" style="--icon: url('icons/close_small.svg')"></span>
         </button>
 
-        <div class="modal-info">
-          <div class="modal-heading">
-            <span class="modal-number">{{ projects[selectedIndex()!].number }}</span>
-            <h3 class="modal-title">{{ projects[selectedIndex()!].name }}</h3>
-          </div>
+        <div class="modal-scroll">
+          <div class="modal-info">
+            <div class="modal-heading">
+              <span class="modal-number">{{ projects[selectedIndex()!].number }}</span>
+              <h3 class="modal-title">{{ projects[selectedIndex()!].name }}</h3>
+            </div>
 
-          <div class="modal-description-block">
-            <span class="modal-question">{{ 'projects.modal.question' | translate }}</span>
-            <p class="modal-description">
-              {{ projects[selectedIndex()!].descriptionKey | translate }}
-            </p>
+            <div class="modal-description-block">
+              <span class="modal-question">{{ 'projects.modal.question' | translate }}</span>
+              <p class="modal-description">
+                {{ projects[selectedIndex()!].descriptionKey | translate }}
+              </p>
 
-            <div class="modal-tech-list">
-              @for (tech of projects[selectedIndex()!].technologies; track tech) {
-                <div class="modal-tech-item">
-                  <span class="modal-tech-icon-box">
-                    <img [src]="techIcon(tech)" alt="" />
-                  </span>
-                  <span class="modal-tech-name">{{ tech }}</span>
-                </div>
-              }
+              <div class="modal-tech-list">
+                @for (tech of projects[selectedIndex()!].technologies; track tech) {
+                  <div class="modal-tech-item">
+                    <span class="modal-tech-icon-box">
+                      <img [src]="techIcon(tech)" alt="" />
+                    </span>
+                    <span class="modal-tech-name">{{ tech }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <div class="modal-buttons">
+              <a
+                [href]="projects[selectedIndex()!].githubUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-secondary"
+              >
+                <span class="btn-secondary-text">GitHub</span>
+                <span class="btn-secondary-arrow-box">
+                  <img src="icons/arrow_outward.svg" alt="" class="btn-secondary-arrow" />
+                </span>
+              </a>
+              <a
+                [href]="projects[selectedIndex()!].liveUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-secondary"
+              >
+                <span class="btn-secondary-text">{{ 'projects.modal.liveTest' | translate }}</span>
+                <span class="btn-secondary-arrow-box">
+                  <img src="icons/arrow_outward.svg" alt="" class="btn-secondary-arrow" />
+                </span>
+              </a>
             </div>
           </div>
 
-          <div class="modal-buttons">
-            <a
-              [href]="projects[selectedIndex()!].githubUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-secondary"
-            >
-              <span class="btn-secondary-text">GitHub</span>
-              <span class="btn-secondary-arrow-box">
-                <img src="icons/arrow_outward.svg" alt="" class="btn-secondary-arrow" />
-              </span>
-            </a>
-            <a
-              [href]="projects[selectedIndex()!].liveUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-secondary"
-            >
-              <span class="btn-secondary-text">{{ 'projects.modal.liveTest' | translate }}</span>
-              <span class="btn-secondary-arrow-box">
-                <img src="icons/arrow_outward.svg" alt="" class="btn-secondary-arrow" />
-              </span>
-            </a>
+          <div
+            class="modal-image"
+            [style.background]="projects[selectedIndex()!].bgColor ?? 'transparent'"
+          >
+            <img
+              [src]="projects[selectedIndex()!].image"
+              [alt]="projects[selectedIndex()!].name"
+              [style.object-fit]="projects[selectedIndex()!].bgColor ? 'contain' : 'cover'"
+            />
           </div>
-        </div>
 
-        <div
-          class="modal-image"
-          [style.background]="projects[selectedIndex()!].bgColor ?? 'transparent'"
-        >
-          <img
-            [src]="projects[selectedIndex()!].image"
-            [alt]="projects[selectedIndex()!].name"
-            [style.object-fit]="projects[selectedIndex()!].bgColor ? 'contain' : 'cover'"
-          />
+          <button class="modal-next" (click)="nextProject()">
+            <span class="modal-next-text">{{ 'projects.modal.next' | translate }}</span>
+            <span class="modal-next-arrow-box">
+              <img src="icons/arrow_forward.svg" alt="" class="modal-next-arrow" />
+            </span>
+          </button>
         </div>
-
-        <button class="modal-next" (click)="nextProject()">
-          <span class="modal-next-text">{{ 'projects.modal.next' | translate }}</span>
-          <span class="modal-next-arrow-box">
-            <img src="icons/arrow_forward.svg" alt="" class="modal-next-arrow" />
-          </span>
-        </button>
       </div>
     </div>
   }

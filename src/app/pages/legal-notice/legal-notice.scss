@@ -17,6 +17,11 @@
   margin: 0 auto;
   padding: 50px 96px 0;
   box-sizing: border-box;
+  position: relative;
+
+  @include mobile {
+    padding: 98px 20px 0;
+  }
 }
 
 .legal-title {
@@ -28,6 +33,13 @@
   color: $color-primary;
   text-align: center;
   margin: 0 0 64px;
+
+  @include mobile {
+    font-size: 32px;
+    color: $color-white;
+    text-align: left;
+    margin-bottom: 32px;
+  }
 }
 
 .legal-content {
@@ -58,5 +70,30 @@
 
   .hl {
     color: $color-white;
+  }
+
+  @include mobile {
+    overflow-wrap: anywhere;
+  }
+}
+
+.legal-back {
+  display: none;
+
+  @include mobile {
+    position: absolute;
+    top: 19px;
+    left: 14px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-white;
+  }
+
+  svg {
+    width: 14.5px;
+    height: 14.5px;
   }
 }

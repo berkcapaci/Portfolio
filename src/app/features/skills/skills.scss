@@ -10,22 +10,62 @@
 }
 
 .skills-inner {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 144px 96px 0;
-  box-sizing: border-box;
   display: flex;
   gap: 96px;
   align-items: flex-start;
+  @include section-inner;
+
+  // Not enough room for the grid and the card side by side
+  @media (max-width: 1280px) {
+    flex-direction: column;
+    align-items: center; // Centers the card and the grid instead of leaving empty space on the right
+    gap: 40px;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    gap: 40px;
+  }
 }
 
 .skills-grid {
   display: grid;
+  // 1248px content width = 632px grid + 96px gap + 520px card. Below 1440px the grid
+  // takes what is left (screen minus 96px side padding twice, the gap and the card),
+  // and the column gaps shrink with it
+  width: min(632px, calc(100vw - 808px));
+  flex-shrink: 0;
   grid-template-columns: repeat(4, 104px);
   grid-template-rows: repeat(3, 116px);
-  gap: 40px 72px;
+  justify-content: space-between;
+  row-gap: 40px;
   align-content: start;
   margin-top: 48px;
+
+  // Stacked below the card: same width as the card, so both blocks line up
+  @media (max-width: 1280px) {
+    width: 100%;
+    max-width: 520px;
+    grid-template-columns: repeat(4, minmax(0, 104px));
+    margin-top: 0;
+  }
+
+  @include mobile {
+    // Figma: 3 columns, up to 104px wide each. They shrink on narrow screens
+    // (320px), so the grid never causes a horizontal scrollbar
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 104px));
+    grid-template-rows: none;
+    grid-auto-rows: 110px; // Figma: every row is 110px tall
+    justify-content: start;
+    gap: 32px 16px; // Figma: 32px between rows, 16px between columns
+    margin-top: 0; // The 40px gap between the two frames already sets the spacing
+  }
+
+  // From 390px up to 768px the three columns sit in the middle of the card
+  @media (min-width: 390px) and (max-width: 768px) {
+    justify-content: center;
+  }
 }
 
 .skill-item {
@@ -35,6 +75,10 @@
   align-items: center;
   gap: 8px;
   width: 104px;
+
+  @include mobile {
+    width: 100%; // Follows the column width, which shrinks on narrow screens
+  }
 }
 
 .skill-icon-wrapper {
@@ -45,6 +89,11 @@
   align-items: center;
   justify-content: center;
 
+  @include mobile {
+    width: 64px; // Figma: 64x64 frame, the logo is centered inside
+    height: 64px;
+  }
+
   img {
     max-width: 50.4px;
     max-height: 56px;
@@ -52,6 +101,10 @@
     height: auto;
     object-fit: contain;
     transition: transform 150ms ease-in;
+
+    @include mobile {
+      animation: skill-icon-pulse 2.8s ease-in-out infinite;
+    }
   }
 
   .icon-default,
@@ -89,6 +142,11 @@
   letter-spacing: -0.54px;
   text-align: center;
   color: $color-white;
+
+  @include mobile {
+    font-size: 16px; // Figma
+    letter-spacing: -0.03em; // Figma: -3%
+  }
 }
 
 .skills-text {
@@ -97,6 +155,10 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @include mobile {
+    gap: 15px; // Figma: "Technologies" to the card
+  }
 }
 
 .skills-eyebrow {
@@ -112,7 +174,7 @@
 .skills-card {
   width: 520px;
   max-width: 100%;
-  height: 503px;
+  min-height: 503px; // Figma height, but it grows when a longer language needs more room
   box-sizing: border-box;
   border-radius: 30px;
   padding: 32px;
@@ -121,6 +183,12 @@
   border: 1px solid $color-primary;
   display: flex;
   flex-direction: column;
+
+  @include mobile {
+    min-height: 0;
+    padding: 24px 32px; // Figma
+    gap: 32px; // Figma: title to the text group, and the text group to the button
+  }
 }
 
 .skills-title {
@@ -131,12 +199,24 @@
   letter-spacing: -1.92px;
   color: $color-primary;
   margin: 0;
+
+  @include mobile {
+    // Figma: 56px at 390px. "Skill Set" is about 5.13 times the font size wide,
+    // and the space inside the card is the screen minus 98px
+    font-size: min(56px, calc((100vw - 98px) / 5.2));
+    line-height: 80%; // Figma
+    letter-spacing: -0.03em; // Figma: -3%
+  }
 }
 
 .skills-description {
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  @include mobile {
+    gap: 24px; // Figma: paragraph to the call to action
+  }
 }
 
 .skills-text-block {
@@ -147,12 +227,20 @@
   text-align: justify;
   color: $color-white;
   margin: 0;
+
+  @include mobile {
+    font-size: 16px; // Figma
+  }
 }
 
 .skills-cta {
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  @include mobile {
+    gap: 12px; // Figma
+  }
 }
 
 .skills-cta-title {
@@ -162,6 +250,10 @@
   line-height: 120%;
   letter-spacing: normal;
   margin: 0;
+
+  @include mobile {
+    font-size: 20px; // Figma
+  }
 }
 
 .text-white {
@@ -274,4 +366,25 @@
 
 .skill-item:hover .growth-mindset-name {
   color: $color-primary;
+}
+
+@keyframes skill-icon-pulse {
+  0%,
+  10% {
+    transform: scale(1);
+  }
+  25%,
+  85% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// People who turned off motion in their system settings get no loop
+@media (prefers-reduced-motion: reduce) {
+  .skill-icon-wrapper img {
+    animation: none;
+  }
 }

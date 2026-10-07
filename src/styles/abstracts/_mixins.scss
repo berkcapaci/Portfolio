@@ -1,0 +1,15 @@
+@use 'variables' as *;
+@use 'breakpoints' as *;
+
+// Shared outer frame of every section: width limit, centering, spacing
+@mixin section-inner {
+  max-width: $content-max-width;
+  margin: 0 auto;
+  padding: $section-padding-y $section-padding-x 0;
+  box-sizing: border-box;
+
+  @include mobile {
+    padding: $section-padding-y-mobile $section-padding-x-mobile 0;
+  }
+  
+}

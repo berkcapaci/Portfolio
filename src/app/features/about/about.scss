@@ -5,21 +5,36 @@
 }
 
 .about-inner {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 144px 96px 0;
-  box-sizing: border-box;
   display: flex;
   align-items: flex-start;
   gap: 96px;
+  @include section-inner;
+
+  // Not enough room for the photo and the card side by side, same breakpoint as Skills
+  @media (max-width: 1280px) {
+    flex-direction: column;
+    align-items: center; // Centers the photo and the card
+    gap: 40px;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    gap: 40px; // Figma: 40px between the photo and "Who I Am"
+  }
 }
 
 .about-image {
   position: relative;
-  width: 568px;
-  max-width: 100%;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 568px;
   aspect-ratio: 1 / 1;
-  flex-shrink: 0;
+
+  @media (max-width: 1280px) {
+    flex: none;
+    width: 568px;
+    max-width: 100%;
+  }
 
   .hatch-decoration {
     position: absolute;
@@ -30,6 +45,14 @@
     z-index: 0;
     opacity: 0;
     transition: opacity 100ms ease-in;
+
+    @include mobile {
+      // No hover on touch screens, so it is always visible,
+      // peeking out 12px on the left and at the bottom (measured from the Figma view)
+      top: 12px;
+      left: -12px;
+      opacity: 1;
+    }
   }
 
   &:hover .hatch-decoration {
@@ -49,13 +72,25 @@
 }
 
 .about-content {
-  width: 568px;
-  max-width: 100%;
-  margin-top: 98px;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 568px;
+  margin-top: 22px;
   margin-bottom: 22px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: 1280px) {
+    flex: none;
+    width: 568px;
+    max-width: 100%;
+  }
+
+  @include mobile {
+    margin: 0; // The 40px gap above and the 100px section gap below already set the spacing
+    gap: 16px; // Figma: eyebrow to card
+  }
 }
 
 .about-eyebrow {
@@ -67,8 +102,8 @@
 }
 
 .about-card {
-  width: 568px;
-  max-width: 100%;
+  width: 100%;
+  container-type: inline-size; // Lets the title scale with the card's real width
   box-sizing: border-box;
   border-radius: 30px;
   padding: 32px;
@@ -79,16 +114,41 @@
   -webkit-backdrop-filter: blur(2px);
   display: flex;
   flex-direction: column;
+
+  @include mobile {
+    padding: 27px 32px; // Figma
+    gap: 32px; // Figma: title to the text group
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+}
+
+// Groups the paragraph and the list, so their spacing can differ from the title's spacing
+.about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include mobile {
+    gap: 24px; // Figma: paragraph to the list
+  }
 }
 
 .about-title {
   font-family: $font-mono;
   font-weight: 700;
-  font-size: 64px;
+  font-size: min(64px, 17cqw);
   line-height: 100%;
   letter-spacing: -1.92px;
   color: $color-primary;
   margin: 0;
+
+  @include mobile {
+    // Figma: 56px at 390px. Below that it shrinks so the title stays on one line.
+    font-size: min(56px, calc((100vw - 98px) / 4.6));
+    line-height: 80%; // Figma
+    letter-spacing: -0.03em; // Figma: -3%
+  }
 }
 
 .about-text {
@@ -99,6 +159,10 @@
   text-align: justify;
   color: $color-white;
   margin: 0;
+
+  @include mobile {
+    font-size: 16px; // Figma
+  }
 }
 
 .about-points {
@@ -121,9 +185,10 @@
   }
 
   img {
-    width: 32px;
+    width: 32px; // Invisible bounding box from Figma, the icon sits in its middle
     height: 32px;
     flex-shrink: 0;
+    object-fit: none; // Keeps the file's own size instead of stretching it to the box
   }
 
   span {
@@ -133,5 +198,9 @@
     line-height: 120%;
     color: rgba(255, 255, 255, 0.8);
     transition: color 100ms ease-in;
+
+    @include mobile {
+      font-size: 16px; // Figma
+    }
   }
 }

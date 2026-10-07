@@ -6,8 +6,8 @@
   },
   "hero": {
     "role": "Fullstack Developer",
-    "checkWork": "Meine Arbeit ansehen",
-    "contactMe": "Kontaktiere mich",
+    "checkWork": "Projekte",
+    "contactMe": "Kontakt",
     "ticker": {
       "remote": "Verfügbar für Remote-Arbeit",
       "role": "Fullstack Developer",
@@ -90,7 +90,7 @@
       },
       "email": {
         "required": "Hoppla! Deine E-Mail wird benötigt",
-        "invalid": "Bitte gib eine gültige E-Mail-Adresse ein"
+        "invalid": "Bitte gib eine gültige E-Mail ein"
       },
       "message": {
         "required": "Was soll ich für dich entwickeln?",

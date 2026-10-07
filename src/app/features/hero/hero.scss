@@ -44,6 +44,10 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
+
+  @include mobile {
+    gap: 32px; // Figma
+  }
 }
 
 .hero-label {
@@ -55,7 +59,7 @@
   color: $color-light-gray;
 
   @include mobile {
-    font-size: clamp(16px, 6vw, 40px); // My guess, replace with the Figma value
+    font-size: 24px; // Figma
   }
 }
 
@@ -69,7 +73,10 @@
   margin: 0;
 
   @include mobile {
-    font-size: clamp(40px, 16vw, 128px); // My guess, replace with the Figma value
+    // Figma: 62px at 390px, where the name is about 366px wide (5.9 times the font size).
+    // The space available is the screen minus 12px on each side, so the name always fits.
+    font-size: min(62px, calc((100vw - 24px) / 5.5));
+    letter-spacing: -0.02em; // Figma: -2%
   }
 }
 
@@ -78,10 +85,18 @@
   gap: 48px;
 
   @include mobile {
-    // Wrapping keeps the narrowest screens (320px) from overflowing
+    // Safety net, only German's longer texts may ever need it
     flex-wrap: wrap;
     justify-content: center;
-    gap: 16px 24px; // My guess, the Figma gap looks like roughly 24px
+    gap: 24px; // Figma
+
+    // Below the Figma width the row would touch the scroll indicator:
+    // switch to stacked at once and stay stacked down to 320px
+    @media (max-width: 389px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
   }
 }
 
@@ -153,6 +168,11 @@
   align-items: center;
   gap: 24px;
   z-index: 2;
+
+  @include mobile {
+    top: auto; // Without this, top + bottom would override the fixed height
+    height: 296px; // Figma
+  }
 }
 
 .arrow-circle {
@@ -201,6 +221,11 @@
   align-items: center;
   gap: 24px;
   z-index: 2;
+
+  @include mobile {
+    top: auto;
+    height: 256px; // Figma
+  }
 }
 
 .hero-email {
@@ -221,20 +246,24 @@
   &:hover {
     color: $color-primary;
   }
+  @include mobile {
+    display: none;
+  }
 }
 
 .social-icon {
   position: relative;
-  width: 32px;
+  width: 32px; // Invisible bounding box, the icons inside are smaller (26px)
   height: 32px;
   flex-shrink: 0;
 
   img {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    left: 50%;
+    width: auto; // Keeps the file's own size instead of stretching to the box
+    height: auto;
+    transform: translate(-50%, -50%);
     transition: opacity 100ms ease-in;
   }
 
@@ -252,6 +281,15 @@
 
   &:hover .icon-hover {
     opacity: 1;
+  }
+}
+
+// The envelope replaces the vertical email text, so it only shows on mobile
+.social-icon--mail {
+  display: none;
+
+  @include mobile {
+    display: block;
   }
 }
 

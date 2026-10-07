@@ -1,4 +1,13 @@
-import { Component, signal, ElementRef, QueryList, ViewChildren, ViewChild } from '@angular/core';
+import {
+  Component,
+  effect,
+  signal,
+  ElementRef,
+  QueryList,
+  ViewChildren,
+  ViewChild,
+  HostListener,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SKILLS } from '../../core/data/skills-data';
@@ -48,6 +57,24 @@ export class Projects {
   @ViewChildren('projectRow') private projectRows!: QueryList<ElementRef<HTMLElement>>;
   @ViewChild('projectsList') private projectsList!: ElementRef<HTMLElement>;
 
+  constructor() {
+    effect((onCleanup) => {
+      if (this.selectedIndex() === null) {
+        return;
+      }
+
+      const root = document.documentElement;
+      const scrollbarWidth = window.innerWidth - root.clientWidth;
+      root.style.overflow = 'hidden';
+      root.style.paddingRight = `${scrollbarWidth}px`;
+
+      onCleanup(() => {
+        root.style.overflow = '';
+        root.style.paddingRight = '';
+      });
+    });
+  }
+
   protected onRowHover(index: number): void {
     this.hoveredIndex.set(index);
 
@@ -84,6 +111,13 @@ export class Projects {
 
   protected openModal(index: number): void {
     this.selectedIndex.set(index);
+  }
+
+  @HostListener('document:keydown.escape')
+  protected onEscape(): void {
+    if (this.selectedIndex() !== null) {
+      this.closeModal();
+    }
   }
 
   protected closeModal(): void {

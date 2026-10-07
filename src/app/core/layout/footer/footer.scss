@@ -122,3 +122,39 @@
   color: $color-primary;
   margin: 0;
 }
+
+@include mobile {
+  .footer {
+    padding-bottom: 64px;
+  }
+
+  .footer-inner {
+    padding: $section-padding-y-mobile $section-padding-x-mobile 0;
+    align-items: flex-start;
+  }
+
+  .footer-links {
+    width: 96.64px;
+  }
+
+  .footer-link {
+    padding-left: 2px;
+  }
+
+  .footer-link-dot {
+    display: none;
+  }
+
+  .footer-copyright {
+    position: static;
+    transform: none;
+    margin-top: 32px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 389px) {
+  .footer-logo-text {
+    display: none;
+  }
+}
